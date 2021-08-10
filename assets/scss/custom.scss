@@ -134,6 +134,10 @@ footer p {
 
 .docs-search {
     display: none !important;
+
+    @media (max-width: 768px) {
+        display: block !important;
+    }
 }
 
 .docs-links {
