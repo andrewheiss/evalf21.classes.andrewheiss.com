@@ -729,7 +729,7 @@ dagify(
   geom_dag_text(color = "black", size = 7) +
   scale_color_manual(values = c("#FF4136", "#0074D9"),
                      na.value = "#7FDBFF") +
-  guides(color = FALSE) +
+  guides(color = "none") +
   theme_dag()
 ```
 
@@ -758,7 +758,7 @@ dagify(
   geom_dag_text(color = "black", size = 5) +
   scale_color_manual(values = c("#FF4136", "grey60", "#0074D9"),
                      na.value = "#7FDBFF") +
-  guides(color = FALSE) +
+  guides(color = "none") +
   theme_dag()
 ```
 
@@ -842,21 +842,15 @@ class: title title-6
 
 # Textbooks
 
-.pull-left-3.center[
+.pull-left.center[
 <figure>
-  <img src="img/01/wb-eval.jpg" alt="Impact Evaluation in Practice" title="Impact Evaluation in Practice" width="100%">
+  <img src="img/01/wb-eval.jpg" alt="Impact Evaluation in Practice" title="Impact Evaluation in Practice" width="75%">
 </figure>
 ]
 
-.pull-middle-3.center[
+.pull-right.center[
 <figure>
-  <img src="img/01/mastering-metrics.jpg" alt="Mastering Metrics" title="Mastering Metrics" width="90%">
-</figure>
-]
-
-.pull-right-3.center[
-<figure>
-  <img src="img/01/mixtape.jpg" alt="Causal Inference: The Mixtape" title="Causal Inference: The Mixtape" width="100%" style="border: 1px solid #EE6A24">
+  <img src="img/01/the-effect.png" alt="The Effect" title="The Effect" width="66%" style="border: 1px solid #EE6A24">
 </figure>
 ]
 
