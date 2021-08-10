@@ -116,7 +116,7 @@ ggplot(tutoring, aes(x = entrance_exam, y = tutoring, color = tutoring)) +
   # Add labels
   labs(x = "Entrance exam score", y = "Participated in tutoring program") +
   # Turn off the color legend, since it's redundant
-  guides(color = FALSE)
+  guides(color = "none")
 ```
 
 This looks pretty sharp—it doesn't look like people who scored under 70 participated in the program. We can verify this with a table. There are no people where `entrance_exam` is greater than 70 and `tutoring` is false, and no people where `entrance_exam` is less than 70 and `tutoring` is true.
@@ -259,7 +259,7 @@ modelsummary(list("Full data" = model_simple,
                   "Bandwidth = 5" = model_bw_5))
 ```
 
-```{r all-models-real, echo=FALSE}
+```{r all-models-real, echo=FALSE, warning=FALSE}
 gm <- modelsummary::gof_map %>%
   mutate(omit = !(raw %in% c("nobs", "r.squared", "adj.r.squared")))
 

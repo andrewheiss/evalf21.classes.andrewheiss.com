@@ -123,7 +123,7 @@ ggdag_status(dag_with_var_names) +
 However, unless you use very short names, it is likely that the text will not fit inside the nodes. To get around this, you can add labels to the nodes using the `labels` argument in `dagify()`. Plot the labels by setting `use_labels = "label"` in `ggdag()`. You can turn off the text in the nodes with `text = FALSE` in `ggdag()`.
 
 ```{r dag-with-labels}
-simple_dag_with_coords_and_labels <- dagify(
+dag_with_coords_and_labels <- dagify(
   y ~ x + a + b,
   x ~ a + b,
   exposure = "x",
@@ -134,9 +134,9 @@ simple_dag_with_coords_and_labels <- dagify(
                 y = c(x = 2, a = 1, b = 3, y = 2))
 )
 
-ggdag_status(simple_dag_with_coords_and_labels,
+ggdag_status(dag_with_coords_and_labels,
              use_labels = "label", text = FALSE) +
-  guides(fill = FALSE, color = FALSE) +  # Disable the legend
+  guides(fill = "none", color = "none") +  # Disable the legend
   theme_dag()
 ```
 
@@ -228,7 +228,7 @@ bb="0,0,1,1"
 ')
 
 ggdag_status(model_from_dagitty_rounded, text = FALSE, use_labels = "name") +
-  guides(color = FALSE) +  # Turn off legend
+  guides(color = "none") +  # Turn off legend
   theme_dag()
 ```
 
@@ -262,7 +262,7 @@ mosquito_dag <- dagify(
 )
 
 ggdag_status(mosquito_dag, use_labels = "label", text = FALSE) +
-  guides(fill = FALSE, color = FALSE) +  # Disable the legend
+  guides(fill = "none", color = "none") +  # Disable the legend
   theme_dag()
 ```
 

@@ -728,7 +728,7 @@ head(example_fake_people)
 ```{r example-plots-1, fig.width=10, out.width="100%"}
 plot_opinion <- ggplot(example_fake_people, aes(x = opinion)) +
   geom_bar() +
-  guides(fill = FALSE) +
+  guides(fill = "none") +
   labs(title = "Opinion (uniform with sample())")
 
 plot_age <- ggplot(example_fake_people, aes(x = age)) +

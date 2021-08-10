@@ -77,7 +77,7 @@ ggplot(tutoring, aes(x = entrance_exam, y = tutoring_text, color = entrance_exam
   # Add labels
   labs(x = "Entrance exam score", y = "Participated in tutoring program") +
   # Turn off the color legend, since it's redundant
-  guides(color = FALSE)
+  guides(color = "none")
 ```
 
 We can see the count and percentages of compliance with `group_by()` and `summarize()`:
@@ -216,7 +216,7 @@ Notice that last caveat. Because we're working with regression discontinuity, we
 
 If we compare this fuzzy result to the sharp result, we can see a sizable difference:
 
-```{r show-fuzzies}
+```{r show-fuzzies, warning=FALSE}
 # gof_omit here will omit goodness-of-fit rows that match any of the text. This
 # means 'contains "IC" OR contains "Low" OR contains "Adj" OR contains "p.value"
 # OR contains "statistic" OR contains "se_type"'. Basically we're getting rid of

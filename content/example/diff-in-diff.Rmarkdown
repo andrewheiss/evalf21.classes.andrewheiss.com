@@ -337,7 +337,7 @@ We can put the model coefficients side-by-side to compare the value for `highear
 modelsummary(list("Simple" = model_small, "Full" = model_big))
 ```
 
-```{r all-models-together-real, echo=FALSE}
+```{r all-models-together-real, echo=FALSE, warning=FALSE}
 gm <- modelsummary::gof_map %>%
   mutate(omit = !(raw %in% c("nobs", "r.squared", "adj.r.squared")))
 

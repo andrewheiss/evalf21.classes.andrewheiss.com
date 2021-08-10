@@ -98,7 +98,7 @@ ggplot(tutoring, aes(x = entrance_exam, y = tutoring, color = tutoring)) +
   # Add labels
   labs(x = "Entrance exam score", y = "Participated in tutoring program") +
   # Turn off the color legend, since it's redundant
-  guides(color = FALSE)
+  guides(color = "none")
 ```
 
 <img src="/example/rdd_files/figure-html/check-fuzzy-sharp-1.png" width="75%" style="display: block; margin: auto;" />
@@ -110,7 +110,7 @@ This looks pretty sharp—it doesn't look like people who scored under 70 partic
 tutoring %>%
   group_by(tutoring, entrance_exam <= 70) %>%
   summarize(count = n())
-## # A tibble: 2 x 3
+## # A tibble: 2 × 3
 ## # Groups:   tutoring [2]
 ##   tutoring `entrance_exam <= 70` count
 ##   <lgl>    <lgl>                 <int>
@@ -240,10 +240,10 @@ tutoring_centered <- tutoring %>%
 model_simple <- lm(exit_exam ~ entrance_centered + tutoring,
                    data = tutoring_centered)
 tidy(model_simple)
-## # A tibble: 3 x 5
+## # A tibble: 3 × 5
 ##   term              estimate std.error statistic  p.value
 ##   <chr>                <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)         59.4      0.442      134.  0.      
+## 1 (Intercept)         59.4      0.442      134.  0       
 ## 2 entrance_centered    0.510    0.0269      18.9 1.40e-68
 ## 3 tutoringTRUE        10.8      0.800       13.5 3.12e-38
 ```
@@ -267,7 +267,7 @@ model_bw_10 <- lm(exit_exam ~ entrance_centered + tutoring,
                                 entrance_centered >= -10 &
                                   entrance_centered <= 10))
 tidy(model_bw_10)
-## # A tibble: 3 x 5
+## # A tibble: 3 × 5
 ##   term              estimate std.error statistic   p.value
 ##   <chr>                <dbl>     <dbl>     <dbl>     <dbl>
 ## 1 (Intercept)         60.4       0.752     80.3  2.99e-249
@@ -279,7 +279,7 @@ model_bw_5 <- lm(exit_exam ~ entrance_centered + tutoring,
                                 entrance_centered >= -5 &
                                   entrance_centered <= 5))
 tidy(model_bw_5)
-## # A tibble: 3 x 5
+## # A tibble: 3 × 5
 ##   term              estimate std.error statistic   p.value
 ##   <chr>                <dbl>     <dbl>     <dbl>     <dbl>
 ## 1 (Intercept)         60.6       1.12      54.3  4.78e-118
@@ -296,7 +296,7 @@ modelsummary(list("Full data" = model_simple,
                   "Bandwidth = 5" = model_bw_5))
 ```
 
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
  <thead>
   <tr>
    <th style="text-align:left;">   </th>
@@ -421,12 +421,8 @@ modelsummary(list("Full data" = model_simple,
    <td style="text-align:center;"> 2 </td>
   </tr>
 </tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; border:0;" colspan="100%">
-<sup></sup> * p &lt; 0.1, ** p &lt; 0.05, *** p &lt; 0.01</td>
-</tr>
-</tfoot>
+<tfoot><tr><td style="padding: 0; " colspan="100%">
+<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td></tr></tfoot>
 </table>
 
 The effect of `tutoring` differs a lot across these different models, from 9.1 to 10.8. Which one is right? I don't know. Definitely not the full data one.
@@ -480,14 +476,14 @@ rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70) %>%
 ## Kernel                   Triangular
 ## VCE method                       NN
 ## 
-## Number of Obs.                 237         763
-## Eff. Number of Obs.            144         256
-## Order est. (p)                   1           1
-## Order bias  (q)                  2           2
-## BW est. (h)                  9.969       9.969
-## BW bias (b)                 14.661      14.661
-## rho (h/b)                    0.680       0.680
-## Unique Obs.                    155         262
+## Number of Obs.                  237          763
+## Eff. Number of Obs.             144          256
+## Order est. (p)                    1            1
+## Order bias  (q)                   2            2
+## BW est. (h)                   9.969        9.969
+## BW bias (b)                  14.661       14.661
+## rho (h/b)                     0.680        0.680
+## Unique Obs.                     155          262
 ## 
 ## =============================================================================
 ##         Method     Coef. Std. Err.         z     P>|z|      [ 95% C.I. ]       
@@ -548,10 +544,10 @@ rdbwselect(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70) %>%
 ## Kernel                   Triangular
 ## VCE method                       NN
 ## 
-## Number of Obs.                 237         763
-## Order est. (p)                   1           1
-## Order bias  (q)                  2           2
-## Unique Obs.                    155         262
+## Number of Obs.                  237          763
+## Order est. (p)                    1            1
+## Order bias  (q)                   2            2
+## Unique Obs.                     155          262
 ## 
 ## =======================================================
 ##                   BW est. (h)    BW bias (b)
@@ -575,10 +571,10 @@ rdbwselect(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, all = TRU
 ## Kernel                   Triangular
 ## VCE method                       NN
 ## 
-## Number of Obs.                 237         763
-## Order est. (p)                   1           1
-## Order bias  (q)                  2           2
-## Unique Obs.                    155         262
+## Number of Obs.                  237          763
+## Order est. (p)                    1            1
+## Order bias  (q)                   2            2
+## Unique Obs.                     155          262
 ## 
 ## =======================================================
 ##                   BW est. (h)    BW bias (b)
@@ -613,14 +609,14 @@ rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, h = 9.969) 
 ## Kernel                   Triangular
 ## VCE method                       NN
 ## 
-## Number of Obs.                 237         763
-## Eff. Number of Obs.            144         256
-## Order est. (p)                   1           1
-## Order bias  (q)                  2           2
-## BW est. (h)                  9.969       9.969
-## BW bias (b)                  9.969       9.969
-## rho (h/b)                    1.000       1.000
-## Unique Obs.                    155         262
+## Number of Obs.                  237          763
+## Eff. Number of Obs.             144          256
+## Order est. (p)                    1            1
+## Order bias  (q)                   2            2
+## BW est. (h)                   9.969        9.969
+## BW bias (b)                   9.969        9.969
+## rho (h/b)                     1.000        1.000
+## Unique Obs.                     155          262
 ## 
 ## =============================================================================
 ##         Method     Coef. Std. Err.         z     P>|z|      [ 95% C.I. ]       
@@ -639,14 +635,14 @@ rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, h = 9.969 *
 ## Kernel                   Triangular
 ## VCE method                       NN
 ## 
-## Number of Obs.                 237         763
-## Eff. Number of Obs.            206         577
-## Order est. (p)                   1           1
-## Order bias  (q)                  2           2
-## BW est. (h)                 19.938      19.938
-## BW bias (b)                 19.938      19.938
-## rho (h/b)                    1.000       1.000
-## Unique Obs.                    155         262
+## Number of Obs.                  237          763
+## Eff. Number of Obs.             206          577
+## Order est. (p)                    1            1
+## Order bias  (q)                   2            2
+## BW est. (h)                  19.938       19.938
+## BW bias (b)                  19.938       19.938
+## rho (h/b)                     1.000        1.000
+## Unique Obs.                     155          262
 ## 
 ## =============================================================================
 ##         Method     Coef. Std. Err.         z     P>|z|      [ 95% C.I. ]       
@@ -665,14 +661,14 @@ rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, h = 9.969 /
 ## Kernel                   Triangular
 ## VCE method                       NN
 ## 
-## Number of Obs.                 237         763
-## Eff. Number of Obs.             82         109
-## Order est. (p)                   1           1
-## Order bias  (q)                  2           2
-## BW est. (h)                  4.984       4.984
-## BW bias (b)                  4.984       4.984
-## rho (h/b)                    1.000       1.000
-## Unique Obs.                    155         262
+## Number of Obs.                  237          763
+## Eff. Number of Obs.              82          109
+## Order est. (p)                    1            1
+## Order bias  (q)                   2            2
+## BW est. (h)                   4.984        4.984
+## BW bias (b)                   4.984        4.984
+## rho (h/b)                     1.000        1.000
+## Unique Obs.                     155          262
 ## 
 ## =============================================================================
 ##         Method     Coef. Std. Err.         z     P>|z|      [ 95% C.I. ]       
@@ -706,14 +702,14 @@ rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam,
 ## Kernel                   Triangular
 ## VCE method                       NN
 ## 
-## Number of Obs.                 237         763
-## Eff. Number of Obs.            144         256
-## Order est. (p)                   1           1
-## Order bias  (q)                  2           2
-## BW est. (h)                  9.969       9.969
-## BW bias (b)                 14.661      14.661
-## rho (h/b)                    0.680       0.680
-## Unique Obs.                    155         262
+## Number of Obs.                  237          763
+## Eff. Number of Obs.             144          256
+## Order est. (p)                    1            1
+## Order bias  (q)                   2            2
+## BW est. (h)                   9.969        9.969
+## BW bias (b)                  14.661       14.661
+## rho (h/b)                     0.680        0.680
+## Unique Obs.                     155          262
 ## 
 ## =============================================================================
 ##         Method     Coef. Std. Err.         z     P>|z|      [ 95% C.I. ]       
@@ -733,14 +729,14 @@ rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam,
 ## Kernel                   Epanechnikov
 ## VCE method                       NN
 ## 
-## Number of Obs.                 237         763
-## Eff. Number of Obs.            130         204
-## Order est. (p)                   1           1
-## Order bias  (q)                  2           2
-## BW est. (h)                  8.201       8.201
-## BW bias (b)                 12.807      12.807
-## rho (h/b)                    0.640       0.640
-## Unique Obs.                    155         262
+## Number of Obs.                  237          763
+## Eff. Number of Obs.             130          204
+## Order est. (p)                    1            1
+## Order bias  (q)                   2            2
+## BW est. (h)                   8.201        8.201
+## BW bias (b)                  12.807       12.807
+## rho (h/b)                     0.640        0.640
+## Unique Obs.                     155          262
 ## 
 ## =============================================================================
 ##         Method     Coef. Std. Err.         z     P>|z|      [ 95% C.I. ]       
@@ -760,14 +756,14 @@ rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam,
 ## Kernel                      Uniform
 ## VCE method                       NN
 ## 
-## Number of Obs.                 237         763
-## Eff. Number of Obs.            119         176
-## Order est. (p)                   1           1
-## Order bias  (q)                  2           2
-## BW est. (h)                  7.346       7.346
-## BW bias (b)                 12.561      12.561
-## rho (h/b)                    0.585       0.585
-## Unique Obs.                    155         262
+## Number of Obs.                  237          763
+## Eff. Number of Obs.             119          176
+## Order est. (p)                    1            1
+## Order bias  (q)                   2            2
+## BW est. (h)                   7.346        7.346
+## BW bias (b)                  12.561       12.561
+## rho (h/b)                     0.585        0.585
+## Unique Obs.                     155          262
 ## 
 ## =============================================================================
 ##         Method     Coef. Std. Err.         z     P>|z|      [ 95% C.I. ]       

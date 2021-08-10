@@ -237,7 +237,7 @@ The coefficient for `educ` here is the same as `educ_hat` from the manual 2SLS m
 
 We can put all the models side-by-side to compare them:
 
-```{r}
+```{r warning=FALSE}
 # gof_omit here will omit goodness-of-fit rows that match any of the text. This
 # means 'contains "IC" OR contains "Low" OR contains "Adj" OR contains "p.value"
 # OR contains "statistic" OR contains "se_type"'. Basically we're getting rid of

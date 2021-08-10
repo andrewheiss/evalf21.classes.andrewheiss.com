@@ -41,7 +41,7 @@ dag <- dagify(Y ~ P + G,
                             y = c(Y = 1, P = 1, G = 2)))
 
 ggdag_status(dag, use_labels = "label") +
-  guides(color = FALSE) +  # Remove legend
+  guides(color = "none") +  # Remove legend
   theme_dag()
 ```
 
@@ -85,7 +85,7 @@ It's really tempting to just find the average income for private school and subt
 schools_small %>%
   group_by(private) %>%
   summarize(avg_earnings = mean(earnings))
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   private avg_earnings
 ##   <lgl>          <dbl>
 ## 1 FALSE          70000
@@ -105,7 +105,7 @@ avg_earnings <- schools_small %>%
   summarize(avg_earnings = mean(earnings))
 
 avg_earnings
-## # A tibble: 4 x 3
+## # A tibble: 4 × 3
 ## # Groups:   group [2]
 ##   group private avg_earnings
 ##   <chr> <lgl>          <dbl>
@@ -170,7 +170,7 @@ prop_in_groups <- schools_small %>%
   summarize(n = n()) %>%
   mutate(prop = n / nrow(schools_small))
 prop_in_groups
-## # A tibble: 2 x 3
+## # A tibble: 2 × 3
 ##   group     n  prop
 ##   <chr> <int> <dbl>
 ## 1 A         3   0.6
@@ -202,12 +202,12 @@ model_earnings <- lm(earnings ~ private + group_A, data = schools_small)
 
 ```r
 tidy(model_earnings)
-## # A tibble: 3 x 5
+## # A tibble: 3 × 5
 ##   term        estimate std.error statistic p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>   <dbl>
 ## 1 (Intercept)   40000.    11952.     3.35   0.0789
 ## 2 privateTRUE   10000.    13093.     0.764  0.525 
-## 3 group_ATRUE   60000.    13093.     4.58   0.0445
+## 3 group_ATRUE   60000     13093.     4.58   0.0445
 ```
 
 There are three important numbers here. The intercept (or `\(\alpha\)` in *Mastering 'Metrics*, or `\(\beta_0\)`) is \$40,000. This represents the earnings for someone with all the switches and sliders in the model set to 0 or turned off—in this case, someone who went to a public school in group B.

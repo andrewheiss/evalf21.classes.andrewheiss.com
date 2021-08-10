@@ -460,13 +460,6 @@
       "Repository": "CRAN",
       "Hash": "44594a07a42e5f91fac9f93fda6d0109"
     },
-    "gapminder": {
-      "Package": "gapminder",
-      "Version": "0.3.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "d970917c7a0ef3ef3d19e6fe49ab586c"
-    },
     "gargle": {
       "Package": "gargle",
       "Version": "1.1.0",
@@ -529,13 +522,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "08ab869f37e6a7741a64ab9069bcb67d"
-    },
-    "ggthemes": {
-      "Package": "ggthemes",
-      "Version": "4.2.4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "617fb2c300f68e8b1ba21043fba88fd7"
     },
     "glue": {
       "Package": "glue",
@@ -826,10 +812,10 @@
     },
     "modelsummary": {
       "Package": "modelsummary",
-      "Version": "0.8.0",
+      "Version": "0.8.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "532f4710602d336149faddad77bc43da"
+      "Hash": "b6e27689189a9b0b75ad52e71479fd1a"
     },
     "munsell": {
       "Package": "munsell",
@@ -1152,13 +1138,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "dfd843ee98246cf932823acf613b05dd"
-    },
-    "stargazer": {
-      "Package": "stargazer",
-      "Version": "5.2.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "708c566390f55f011bd475b53cc808d7"
     },
     "stringi": {
       "Package": "stringi",

@@ -148,10 +148,10 @@ The ITT is easy to find with a simple OLS model:
 itt_model <- lm(health ~ treatment, data = bed_nets)
 
 tidy(itt_model)
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term               estimate std.error statistic  p.value
 ##   <chr>                 <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)           40.9      0.444     92.1  0.      
+## 1 (Intercept)           40.9      0.444     92.1  0       
 ## 2 treatmentTreatment     5.99     0.630      9.51 5.36e-21
 
 ITT <- tidy(itt_model) %>%
@@ -190,7 +190,7 @@ bed_nets %>%
   group_by(treatment, bed_net) %>%
   summarize(n = n()) %>%
   mutate(prop = n / sum(n))
-## # A tibble: 4 x 4
+## # A tibble: 4 × 4
 ## # Groups:   treatment [2]
 ##   treatment bed_net        n  prop
 ##   <chr>     <fct>      <int> <dbl>

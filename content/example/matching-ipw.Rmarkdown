@@ -121,7 +121,7 @@ mosquito_dag <- dagify(
 )
 
 ggdag_status(mosquito_dag, use_labels = "label", text = FALSE) +
-  guides(fill = FALSE, color = FALSE) +  # Disable the legend
+  guides(fill = "none", color = "none") +  # Disable the legend
   theme_dag()
 ```
 
@@ -285,7 +285,7 @@ library(latex2exp)
 library(patchwork)
 
 # Using TeX() wipes out theming for whatever reason, so this manually bolds stuff
-bolded_TeX <- function(str) parse(text = paste0("bold(", TeX(str), ")"))
+bolded_tex <- function(str) parse(text = paste0("bold(", TeX(str), ")"))
 
 set.seed(1234)
 
@@ -316,7 +316,7 @@ plot_log_odds <- ggplot(logit_df_odds, aes(x = x, y = log_odds)) +
 
 plot_odds <- ggplot(logit_df_odds, aes(x = x, y = odds_ratio)) +
   geom_path(color = "#FB9E07", size = 2) +
-  labs(title = bolded_TeX("Odds (e^β)"),
+  labs(title = bolded_tex("Odds (e^β)"),
        subtitle = "This is curvy, but it's a mathy transformation of a linear value",
        x = NULL,
        y = TeX("$\\frac{p}{1 - p}$")) +
@@ -453,7 +453,7 @@ modelsummary(list("Naive" = model_wrong,
                   "IPW" = model_ipw, "IPW truncated at 8" = model_ipw_truncated))
 ```
 
-```{r all-models-together-real, echo=FALSE}
+```{r all-models-together-real, echo=FALSE, warning=FALSE}
 gm <- modelsummary::gof_map %>%
   mutate(omit = !(raw %in% c("nobs", "r.squared", "adj.r.squared")))
 

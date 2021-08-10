@@ -218,7 +218,7 @@ diffs <- injury %>%
             # Calculate average with regular duration too, just for fun
             mean_duration_for_humans = mean(duration))
 diffs
-## # A tibble: 4 x 4
+## # A tibble: 4 × 4
 ## # Groups:   after_1980 [2]
 ##   after_1980 highearn mean_duration mean_duration_for_humans
 ##        <dbl>    <dbl>         <dbl>                    <dbl>
@@ -319,7 +319,7 @@ The `\(\delta\)` coefficient is the effect we care about in the end---that's the
 model_small <- lm(log_duration ~ highearn + after_1980 + highearn * after_1980,
                   data = injury)
 tidy(model_small)
-## # A tibble: 4 x 5
+## # A tibble: 4 × 5
 ##   term                estimate std.error statistic   p.value
 ##   <chr>                  <dbl>     <dbl>     <dbl>     <dbl>
 ## 1 (Intercept)          1.13       0.0307    36.6   1.62e-263
@@ -361,7 +361,7 @@ model_big <- lm(log_duration ~ highearn + after_1980 + highearn * after_1980 +
                   male + married + age + hosp + indust + injtype + lprewage,
                 data = injury_fixed)
 tidy(model_big)
-## # A tibble: 18 x 5
+## # A tibble: 18 × 5
 ##    term                estimate std.error statistic   p.value
 ##    <chr>                  <dbl>     <dbl>     <dbl>     <dbl>
 ##  1 (Intercept)         -1.53      0.422       -3.62 2.98e-  4
@@ -401,7 +401,7 @@ We can put the model coefficients side-by-side to compare the value for `highear
 modelsummary(list("Simple" = model_small, "Full" = model_big))
 ```
 
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
  <thead>
   <tr>
    <th style="text-align:left;">   </th>
@@ -423,7 +423,7 @@ modelsummary(list("Simple" = model_small, "Full" = model_big))
   <tr>
    <td style="text-align:left;"> highearn </td>
    <td style="text-align:center;"> 0.256*** </td>
-   <td style="text-align:center;"> -0.152* </td>
+   <td style="text-align:center;"> -0.152+ </td>
   </tr>
   <tr>
    <td style="text-align:left;">  </td>
@@ -442,8 +442,8 @@ modelsummary(list("Simple" = model_small, "Full" = model_big))
   </tr>
   <tr>
    <td style="text-align:left;background-color: #F6D645 !important;"> highearn × after_1980 </td>
-   <td style="text-align:center;background-color: #F6D645 !important;"> 0.191*** </td>
-   <td style="text-align:center;background-color: #F6D645 !important;"> 0.169*** </td>
+   <td style="text-align:center;background-color: #F6D645 !important;"> 0.191** </td>
+   <td style="text-align:center;background-color: #F6D645 !important;"> 0.169** </td>
   </tr>
   <tr>
    <td style="text-align:left;">  </td>
@@ -453,7 +453,7 @@ modelsummary(list("Simple" = model_small, "Full" = model_big))
   <tr>
    <td style="text-align:left;"> male </td>
    <td style="text-align:center;">  </td>
-   <td style="text-align:center;"> -0.084** </td>
+   <td style="text-align:center;"> -0.084* </td>
   </tr>
   <tr>
    <td style="text-align:left;">  </td>
@@ -656,10 +656,6 @@ modelsummary(list("Simple" = model_small, "Full" = model_big))
    <td style="text-align:center;"> 17 </td>
   </tr>
 </tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; border:0;" colspan="100%">
-<sup></sup> * p &lt; 0.1, ** p &lt; 0.05, *** p &lt; 0.01</td>
-</tr>
-</tfoot>
+<tfoot><tr><td style="padding: 0; " colspan="100%">
+<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td></tr></tfoot>
 </table>

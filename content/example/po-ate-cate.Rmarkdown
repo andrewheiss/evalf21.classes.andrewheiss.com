@@ -45,7 +45,7 @@ dag <- dagify(Y ~ P + G,
                             y = c(Y = 1, P = 1, G = 2)))
 
 ggdag_status(dag, use_labels = "label") +
-  guides(color = FALSE) +  # Remove legend
+  guides(color = "none") +  # Remove legend
   theme_dag()
 ```
 

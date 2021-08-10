@@ -11,8 +11,8 @@ toc: true
 editor_options:
   chunk_output_type: console
 ---
-<script src="/rmarkdown-libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="/rmarkdown-libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
 
 
@@ -176,7 +176,7 @@ die <- tibble(value = sample(possible_answers,
                              replace = TRUE))
 die %>%
   count(value)
-## # A tibble: 6 x 2
+## # A tibble: 6 × 2
 ##   value     n
 ##   <dbl> <int>
 ## 1     1   161
@@ -282,7 +282,7 @@ set.seed(1234)
 
 plot_data <- tibble(x = rnorm(1000, mean = 10, sd = 4))
 head(plot_data)
-## # A tibble: 6 x 1
+## # A tibble: 6 × 1
 ##        x
 ##    <dbl>
 ## 1  5.17 
@@ -308,7 +308,7 @@ set.seed(1234)
 
 plot_data <- tibble(x = rnorm(1000, mean = 10, sd = 10))
 head(plot_data)
-## # A tibble: 6 x 1
+## # A tibble: 6 × 1
 ##        x
 ##    <dbl>
 ## 1  -2.07
@@ -336,7 +336,7 @@ fake_people <- tibble(income = rnorm(1000, mean = 40000, sd = 15000),
                       age = rnorm(1000, mean = 25, sd = 8),
                       education = rnorm(1000, mean = 16, sd = 4))
 head(fake_people)
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ##   income   age education
 ##    <dbl> <dbl>     <dbl>
 ## 1 21894. 15.4      12.1 
@@ -388,7 +388,7 @@ set.seed(1234)
 
 plot_data <- tibble(fake_age = rnorm(1000, mean = 14, sd = 5))
 head(plot_data)
-## # A tibble: 6 x 1
+## # A tibble: 6 × 1
 ##   fake_age
 ##      <dbl>
 ## 1     7.96
@@ -414,7 +414,7 @@ set.seed(1234)
 
 plot_data <- tibble(fake_age = rtruncnorm(1000, mean = 14, sd = 5, a = 12, b = 21))
 head(plot_data)
-## # A tibble: 6 x 1
+## # A tibble: 6 × 1
 ##   fake_age
 ##      <dbl>
 ## 1     15.4
@@ -547,7 +547,7 @@ set.seed(1234)
 plot_data <- tibble(thing = rbeta(1000, shape1 = 2, shape2 = 5)) %>%
   mutate(thing = thing * 100)
 head(plot_data)
-## # A tibble: 6 x 1
+## # A tibble: 6 × 1
 ##   thing
 ##   <dbl>
 ## 1 10.1 
@@ -607,7 +607,7 @@ fake_elections <- tibble(winner = sample(candidates,
                                          replace = TRUE))
 fake_elections %>%
   count(winner)
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   winner       n
 ##   <chr>    <int>
 ## 1 Person 1   792
@@ -667,11 +667,11 @@ plot_data <- tibble(thing = rbinom(2000, 1, prob = 0.6)) %>%
 plot_data %>%
   count(thing) %>%
   mutate(proportion = n / sum(n))
-## # A tibble: 2 x 3
+## # A tibble: 2 × 3
 ##   thing     n proportion
 ##   <fct> <int>      <dbl>
-## 1 0       840      0.42 
-## 2 1      1160      0.580
+## 1 0       840       0.42
+## 2 1      1160       0.58
 
 ggplot(plot_data, aes(x = thing)) +
   geom_bar()
@@ -729,7 +729,7 @@ set.seed(1234)
 
 plot_data <- tibble(num_kids = rpois(500, lambda = 1))
 head(plot_data)
-## # A tibble: 6 x 1
+## # A tibble: 6 × 1
 ##   num_kids
 ##      <int>
 ## 1        0
@@ -743,7 +743,7 @@ plot_data %>%
   group_by(num_kids) %>%
   summarize(count = n()) %>%
   mutate(proportion = count / sum(count))
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ##   num_kids count proportion
 ##      <int> <int>      <dbl>
 ## 1        0   180      0.36 
@@ -769,7 +769,7 @@ set.seed(1234)
 
 plot_data <- tibble(num_kids = rpois(500, lambda = 2))
 head(plot_data)
-## # A tibble: 6 x 1
+## # A tibble: 6 × 1
 ##   num_kids
 ##      <int>
 ## 1        0
@@ -783,12 +783,12 @@ plot_data %>%
   group_by(num_kids) %>%
   summarize(count = n()) %>%
   mutate(proportion = count / sum(count))
-## # A tibble: 8 x 3
+## # A tibble: 8 × 3
 ##   num_kids count proportion
 ##      <int> <int>      <dbl>
 ## 1        0    62      0.124
 ## 2        1   135      0.27 
-## 3        2   145      0.290
+## 3        2   145      0.29 
 ## 4        3    88      0.176
 ## 5        4    38      0.076
 ## 6        5    19      0.038
@@ -850,7 +850,7 @@ library(scales)
 fake_people_scaled <- fake_people %>%
   mutate(income_scaled = rescale(income, to = c(10000, 100000)))
 head(fake_people_scaled)
-## # A tibble: 6 x 2
+## # A tibble: 6 × 2
 ##   income income_scaled
 ##    <dbl>         <dbl>
 ## 1 0.101         21154.
@@ -875,7 +875,7 @@ set.seed(1234)
 fake_data <- tibble(age_not_scaled = rnorm(1000, mean = 0, sd = 1)) %>%
   mutate(age = rescale(age_not_scaled, to = c(18, 65)))
 head(fake_data)
-## # A tibble: 6 x 2
+## # A tibble: 6 × 2
 ##   age_not_scaled   age
 ##            <dbl> <dbl>
 ## 1         -1.21   33.6
@@ -992,7 +992,7 @@ example_fake_people <- tibble(
   mutate(happiness = rescale(happiness, to = c(1, 8)))
 
 head(example_fake_people)
-## # A tibble: 6 x 9
+## # A tibble: 6 × 9
 ##      id opinion             age income education happiness treatment size  family_size
 ##   <int> <chr>             <dbl>  <dbl>     <dbl>     <dbl> <lgl>     <chr>       <dbl>
 ## 1     1 Agree              31.7 43900.      18.3      7.20 TRUE      Large           1
@@ -1007,7 +1007,7 @@ head(example_fake_people)
 ```r
 plot_opinion <- ggplot(example_fake_people, aes(x = opinion)) +
   geom_bar() +
-  guides(fill = FALSE) +
+  guides(fill = "none") +
   labs(title = "Opinion (uniform with sample())")
 
 plot_age <- ggplot(example_fake_people, aes(x = age)) +

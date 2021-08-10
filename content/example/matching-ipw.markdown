@@ -115,7 +115,7 @@ mosquito_dag <- dagify(
 )
 
 ggdag_status(mosquito_dag, use_labels = "label", text = FALSE) +
-  guides(fill = FALSE, color = FALSE) +  # Disable the legend
+  guides(fill = "none", color = "none") +  # Disable the legend
   theme_dag()
 ```
 
@@ -144,7 +144,7 @@ nets %>%
   group_by(net) %>%
   summarize(number = n(),
             avg = mean(malaria_risk))
-## # A tibble: 2 x 3
+## # A tibble: 2 × 3
 ##   net   number   avg
 ##   <lgl>  <int> <dbl>
 ## 1 FALSE   1071  41.9
@@ -158,10 +158,10 @@ Or we can do it with regression:
 model_wrong <- lm(malaria_risk ~ net, data = nets)
 
 tidy(model_wrong)
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic   p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
-## 1 (Intercept)     41.9     0.405     104.  0.       
+## 1 (Intercept)     41.9     0.405     104.  0        
 ## 2 netTRUE        -16.3     0.649     -25.1 2.25e-119
 ```
 
@@ -239,10 +239,10 @@ Now that the data has been matched, it should work better for modeling. Also, be
 model_matched <- lm(malaria_risk ~ net,
                     data = matched_data_for_real)
 tidy(model_matched)
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)     38.5     0.600      64.2 0.      
+## 1 (Intercept)     38.5     0.600      64.2 0       
 ## 2 netTRUE        -12.9     0.769     -16.8 2.31e-56
 ```
 
@@ -258,10 +258,10 @@ model_matched_wts <- lm(malaria_risk ~ net,
                         data = matched_data_for_real,
                         weights = weights)
 tidy(model_matched_wts)
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)     36.1     0.595      60.6 0.      
+## 1 (Intercept)     36.1     0.595      60.6 0       
 ## 2 netTRUE        -10.5     0.763     -13.7 7.98e-40
 ```
 
@@ -319,7 +319,7 @@ model_logit <- glm(net ~ income + temperature + health,
                    family = binomial(link = "logit"))
 
 tidy(model_logit)
-## # A tibble: 4 x 5
+## # A tibble: 4 × 5
 ##   term        estimate std.error statistic     p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>       <dbl>
 ## 1 (Intercept) -1.32     0.376        -3.50 0.000464   
@@ -339,7 +339,7 @@ You can make R exponentiate the coefficients automatically by including `exponen
 
 ```r
 tidy(model_logit, exponentiate = TRUE)
-## # A tibble: 4 x 5
+## # A tibble: 4 × 5
 ##   term        estimate std.error statistic     p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>       <dbl>
 ## 1 (Intercept)    0.268  0.376        -3.50 0.000464   
@@ -402,7 +402,7 @@ net_probabilities <- augment_columns(model_net,
 net_probabilities %>%
   select(id, net, income, temperature, health, propensity) %>%
   head()
-## # A tibble: 6 x 6
+## # A tibble: 6 × 6
 ##      id net   income temperature health propensity
 ##   <dbl> <lgl>  <dbl>       <dbl>  <dbl>      <dbl>
 ## 1     1 TRUE     781        21.1     56      0.367
@@ -434,7 +434,7 @@ net_ipw <- net_probabilities %>%
 net_ipw %>%
   select(id, net, income, temperature, health, propensity, ipw) %>%
   head()
-## # A tibble: 6 x 7
+## # A tibble: 6 × 7
 ##      id net   income temperature health propensity   ipw
 ##   <dbl> <lgl>  <dbl>       <dbl>  <dbl>      <dbl> <dbl>
 ## 1     1 TRUE     781        21.1     56      0.367  2.72
@@ -458,10 +458,10 @@ model_ipw <- lm(malaria_risk ~ net,
                 weights = ipw)
 
 tidy(model_ipw)
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)     39.7     0.468      84.7 0.      
+## 1 (Intercept)     39.7     0.468      84.7 0       
 ## 2 netTRUE        -10.1     0.658     -15.4 3.21e-50
 ```
 
@@ -482,10 +482,10 @@ model_ipw_truncated <- lm(malaria_risk ~ net,
                           weights = ipw_truncated)
 
 tidy(model_ipw_truncated)
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)     39.7     0.467      85.1 0.      
+## 1 (Intercept)     39.7     0.467      85.1 0       
 ## 2 netTRUE        -10.2     0.656     -15.5 4.32e-51
 ```
 
@@ -505,7 +505,7 @@ modelsummary(list("Naive" = model_wrong,
                   "IPW" = model_ipw, "IPW truncated at 8" = model_ipw_truncated))
 ```
 
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
  <thead>
   <tr>
    <th style="text-align:left;">   </th>
@@ -654,12 +654,8 @@ modelsummary(list("Naive" = model_wrong,
    <td style="text-align:center;"> 1 </td>
   </tr>
 </tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; border:0;" colspan="100%">
-<sup></sup> * p &lt; 0.1, ** p &lt; 0.05, *** p &lt; 0.01</td>
-</tr>
-</tfoot>
+<tfoot><tr><td style="padding: 0; " colspan="100%">
+<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td></tr></tfoot>
 </table>
 
 Which one is right? In this case, because this is fake simulated data where I built in a 10 point effect, we can see which of these models gets the closest: here, the non-truncated IPW model wins. But that won't always be the case. Both matching and IPW work well for closing backdoors and adjusting for confounders. In real life, you won't know the true value, so try multiple ways.

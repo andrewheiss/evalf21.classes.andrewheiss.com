@@ -58,7 +58,7 @@ happiness_simple <- tibble(
          color_blue = fct_relevel(factor(color_blue), "Not blue"))
 
 head(happiness_simple)
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##      id happiness cookies color_blue
 ##   <int>     <dbl>   <dbl> <fct>     
 ## 1     1       8.7       2 Blue      
@@ -75,7 +75,7 @@ We have a neat dataset now, so let's run a regression. Is eating more cookies or
 ```r
 model_happiness1 <- lm(happiness ~ cookies + color_blue, data = happiness_simple)
 tidy(model_happiness1)
-## # A tibble: 3 x 5
+## # A tibble: 3 × 5
 ##   term           estimate std.error statistic p.value
 ##   <chr>             <dbl>     <dbl>     <dbl>   <dbl>
 ## 1 (Intercept)     7.06       0.105     67.0     0    
@@ -121,7 +121,7 @@ happiness_with_effect <- happiness_simple %>%
   # Make a new happiness column that uses coefficients for cookies and favorite color
   mutate(happiness_modified = happiness + (0.25 * cookies) + (0.75 * color_blue_binary))
 head(happiness_with_effect)
-## # A tibble: 6 x 6
+## # A tibble: 6 × 6
 ##      id happiness cookies color_blue color_blue_binary happiness_modified
 ##   <int>     <dbl>   <dbl> <fct>      <lgl>                          <dbl>
 ## 1     1       8.7       2 Blue       TRUE                            9.95
@@ -138,10 +138,10 @@ Now that we have a new `happiness_modified` column we can run a model using it a
 ```r
 model_happiness2 <- lm(happiness_modified ~ cookies + color_blue, data = happiness_with_effect)
 tidy(model_happiness2)
-## # A tibble: 3 x 5
+## # A tibble: 3 × 5
 ##   term           estimate std.error statistic  p.value
 ##   <chr>             <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)       7.06     0.105      67.0  0.      
+## 1 (Intercept)       7.06     0.105      67.0  0       
 ## 2 cookies           0.241    0.0419      5.76 1.13e- 8
 ## 3 color_blueBlue    0.730    0.0861      8.48 8.25e-17
 ```
@@ -193,10 +193,10 @@ Everything is back in the 3–10 range now. However, the rescaling also rescaled
 ```r
 model_happiness3 <- lm(happiness_rescaled ~ cookies + color_blue, data = happiness_with_effect)
 tidy(model_happiness3)
-## # A tibble: 3 x 5
+## # A tibble: 3 × 5
 ##   term           estimate std.error statistic  p.value
 ##   <chr>             <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)       6.34     0.0910     69.6  0.      
+## 1 (Intercept)       6.34     0.0910     69.6  0       
 ## 2 cookies           0.208    0.0362      5.76 1.13e- 8
 ## 3 color_blueBlue    0.631    0.0744      8.48 8.25e-17
 ```
@@ -231,10 +231,10 @@ happiness_real_effect <- tibble(
 
 model_does_this_work_yet <- lm(happiness ~ cookies + color_blue, data = happiness_real_effect)
 tidy(model_does_this_work_yet)
-## # A tibble: 3 x 5
+## # A tibble: 3 × 5
 ##   term           estimate std.error statistic  p.value
 ##   <chr>             <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)       6.15     0.0886     69.4  0.      
+## 1 (Intercept)       6.15     0.0886     69.4  0       
 ## 2 cookies           0.253    0.0352      7.19 1.25e-12
 ## 3 color_blueBlue    0.749    0.0724     10.3  7.44e-24
 ```
@@ -248,7 +248,7 @@ Phew. We successfully connected cookies and favorite color to happiness and we h
 happiness <- happiness_real_effect %>%
   select(id, happiness, cookies, color_blue)
 head(happiness)
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##      id happiness cookies color_blue
 ##   <int>     <dbl>   <dbl> <fct>     
 ## 1     1      8.81       2 Blue      
@@ -336,7 +336,7 @@ happiness_cookies_blue <- tibble(
   # Rescale to 3-10, since that's what the original happiness column looked like
   mutate(happiness = rescale(happiness_effect, to = c(3, 10)))
 head(happiness_cookies_blue)
-## # A tibble: 6 x 7
+## # A tibble: 6 × 7
 ##      id happiness_baseline cookies color_blue color_blue_binary happiness_effect happiness
 ##   <int>              <dbl>   <dbl> <fct>      <lgl>                        <dbl>     <dbl>
 ## 1     1                8.7     2.5 Blue       TRUE                         10.4       8.84
@@ -353,7 +353,7 @@ Notice now that people who like blue eat partial cookies, as expected. We can ve
 ```r
 lm(cookies ~ color_blue, data = happiness_cookies_blue) %>%
   tidy()
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term           estimate std.error statistic   p.value
 ##   <chr>             <dbl>     <dbl>     <dbl>     <dbl>
 ## 1 (Intercept)       2.07     0.0451     45.9  3.51e-248
@@ -368,10 +368,10 @@ Now let's do some neat DAG magic. Let's say we're interested in the causal effec
 ```r
 model_happiness_naive <- lm(happiness ~ cookies, data = happiness_cookies_blue)
 tidy(model_happiness_naive)
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)    6.27     0.0894     70.1  0.      
+## 1 (Intercept)    6.27     0.0894     70.1  0       
 ## 2 cookies        0.325    0.0354      9.18 2.40e-19
 ```
 
@@ -383,10 +383,10 @@ To fix this confounding, we need to statistically adjust for liking blue and clo
 ```r
 model_happiness_ate <- lm(happiness ~ cookies + color_blue, data = happiness_cookies_blue)
 tidy(model_happiness_ate)
-## # A tibble: 3 x 5
+## # A tibble: 3 × 5
 ##   term           estimate std.error statistic  p.value
 ##   <chr>             <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)       6.09     0.0870     70.0  0.      
+## 1 (Intercept)       6.09     0.0870     70.0  0       
 ## 2 cookies           0.249    0.0346      7.19 1.25e-12
 ## 3 color_blueBlue    0.739    0.0729     10.1  4.70e-23
 ```
@@ -402,7 +402,7 @@ Now that we have a good working dataset, we can keep the columns we care about a
 happiness <- happiness_cookies_blue %>%
   select(id, happiness, cookies, color_blue)
 head(happiness)
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##      id happiness cookies color_blue
 ##   <int>     <dbl>   <dbl> <fct>     
 ## 1     1      8.84     2.5 Blue      
@@ -475,7 +475,7 @@ happiness_cookies_noisier <- tibble(
   # Rescale to 3-10, since that's what the original happiness column looked like
   mutate(happiness = rescale(happiness_effect, to = c(3, 10)))
 head(happiness_cookies_noisier)
-## # A tibble: 6 x 8
+## # A tibble: 6 × 8
 ##      id happiness_baseline cookies cookie_effect color_blue color_blue_binary happiness_effect happiness
 ##   <int>              <dbl>   <dbl>         <dbl> <fct>      <lgl>                        <dbl>     <dbl>
 ## 1     1                8.7     2.5        0.124  Blue       TRUE                          9.92      8.16
@@ -492,10 +492,10 @@ Now let's look at the cookie effect in this noisier data:
 ```r
 model_noisier <- lm(happiness ~ cookies + color_blue, data = happiness_cookies_noisier)
 tidy(model_noisier)
-## # A tibble: 3 x 5
+## # A tibble: 3 × 5
 ##   term           estimate std.error statistic  p.value
 ##   <chr>             <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)       6.11     0.0779     78.4  0.      
+## 1 (Intercept)       6.11     0.0779     78.4  0       
 ## 2 cookies           0.213    0.0314      6.79 1.92e-11
 ## 3 color_blueBlue    0.650    0.0671      9.68 3.01e-21
 ```
@@ -585,7 +585,7 @@ We can confirm the effect with a model:
 ```r
 lm(y ~ x, data = temp_data) %>%
   tidy()
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)    1.98     1.28        1.54 1.24e- 1
@@ -616,7 +616,7 @@ We can check the numbers with a model:
 
 ```r
 lm(outcome ~ treatment, data = temp_data) %>% tidy()
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)    0.244     0.935     0.261 7.94e- 1
@@ -629,7 +629,7 @@ Here's what that looks like as a histogram:
 ```r
 ggplot(temp_data, aes(x = outcome, fill = treatment)) +
   geom_histogram(binwidth = 5, color = "white", boundary = 0) +
-  guides(fill = FALSE) +  # Turn off the fill legend since it's redundant
+  guides(fill = "none") +  # Turn off the fill legend since it's redundant
   facet_wrap(vars(treatment), ncol = 1)
 ```
 
@@ -652,7 +652,7 @@ And with a point range:
 # hahaha these error bars are tiny
 ggplot(temp_data, aes(x = treatment, y = outcome, color = treatment)) +
   stat_summary(geom = "pointrange", fun.data = "mean_se") +
-  guides(color = FALSE)  # Turn off the color legend since it's redundant
+  guides(color = "none")  # Turn off the color legend since it's redundant
 ```
 
 <img src="/example/synthetic-data_files/figure-html/vis-pointrange-1.png" width="75%" style="display: block; margin: auto;" />
@@ -772,7 +772,7 @@ Those previous sections go into a lot of detail. In general, here's the process 
     
     # Look at all these columns!
     head(net_data)
-    ## # A tibble: 6 x 11
+    ## # A tibble: 6 × 11
     ##      id income health_base health_income_effect health net_score net_probability   net malaria_risk_base malaria_effect malaria_risk
     ##   <int>  <dbl>       <dbl>                <dbl>  <dbl>     <dbl>           <dbl> <int>             <dbl>          <dbl>        <dbl>
     ## 1     1   409.        61.2                 8.19   63.1      301.           0.369     0              37.9          -161.         45.1
@@ -799,7 +799,7 @@ Those previous sections go into a lot of detail. In general, here's the process 
     ```r
     
     lm(health ~ income, data = net_data) %>% tidy()
-    ## # A tibble: 2 x 5
+    ## # A tibble: 2 × 5
     ##   term        estimate std.error statistic  p.value
     ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
     ## 1 (Intercept)  59.1      2.54        23.3  2.24e-98
@@ -829,7 +829,7 @@ Those previous sections go into a lot of detail. In general, here's the process 
     ```r
     glm(net ~ income + health, family = binomial(link = "logit"), data = net_data) %>%
       tidy(exponentiate = TRUE)
-    ## # A tibble: 3 x 5
+    ## # A tibble: 3 × 5
     ##   term        estimate std.error statistic  p.value
     ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
     ## 1 (Intercept)   0.0186  0.532        -7.49 6.64e-14
@@ -848,10 +848,10 @@ Those previous sections go into a lot of detail. In general, here's the process 
     # Wrong correlation-is-not-causation effect
     model_net_naive <- lm(malaria_risk ~ net, data = net_data)
     tidy(model_net_naive)
-    ## # A tibble: 2 x 5
+    ## # A tibble: 2 × 5
     ##   term        estimate std.error statistic   p.value
     ##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
-    ## 1 (Intercept)     41.9     0.413     102.  0.       
+    ## 1 (Intercept)     41.9     0.413     102.  0        
     ## 2 net            -13.6     0.572     -23.7 2.90e-101
     ```
 
@@ -862,10 +862,10 @@ Those previous sections go into a lot of detail. In general, here's the process 
     # Correctly adjusted ATE effect
     model_net_ate <- lm(malaria_risk ~ net + health + income, data = net_data)
     tidy(model_net_ate)
-    ## # A tibble: 4 x 5
+    ## # A tibble: 4 × 5
     ##   term        estimate std.error statistic   p.value
     ##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
-    ## 1 (Intercept)  97.3      1.28         76.1 0.       
+    ## 1 (Intercept)  97.3      1.28         76.1 0        
     ## 2 net         -10.5      0.317       -33.2 1.32e-169
     ## 3 health       -0.608    0.0123      -49.4 1.25e-284
     ## 4 income       -0.0320   0.00213     -15.0 1.20e- 46
@@ -881,7 +881,7 @@ Those previous sections go into a lot of detail. In general, here's the process 
     net_data_final <- net_data %>%
       select(id, income, health, net, malaria_risk)
     head(net_data_final)
-    ## # A tibble: 6 x 5
+    ## # A tibble: 6 × 5
     ##      id income health   net malaria_risk
     ##   <int>  <dbl>  <dbl> <int>        <dbl>
     ## 1     1   409.   63.1     0         45.1
@@ -985,7 +985,7 @@ Generating data for a full complete observational DAG like the example above is 
     
     # Look at all these columns!
     head(rct_data)
-    ## # A tibble: 6 x 9
+    ## # A tibble: 6 × 9
     ##      id income health_base health_income_effect health   net malaria_risk_base malaria_effect malaria_risk
     ##   <int>  <dbl>       <dbl>                <dbl>  <dbl> <int>             <dbl>          <dbl>        <dbl>
     ## 1     1   409.        57.2                 8.19   61.3     1              37.4          -192.         35.1
@@ -1012,7 +1012,7 @@ Generating data for a full complete observational DAG like the example above is 
     ```r
     
     lm(health ~ income, data = net_data) %>% tidy()
-    ## # A tibble: 2 x 5
+    ## # A tibble: 2 × 5
     ##   term        estimate std.error statistic  p.value
     ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
     ## 1 (Intercept)  59.1      2.54        23.3  2.24e-98
@@ -1030,10 +1030,10 @@ Generating data for a full complete observational DAG like the example above is 
     # Correct RCT-based ATE
     model_rct <- lm(malaria_risk ~ net, data = rct_data)
     tidy(model_rct)
-    ## # A tibble: 2 x 5
+    ## # A tibble: 2 × 5
     ##   term        estimate std.error statistic  p.value
     ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
-    ## 1 (Intercept)     40.8     0.463      88.0 0.      
+    ## 1 (Intercept)     40.8     0.463      88.0 0       
     ## 2 net            -10.2     0.653     -15.7 2.22e-48
     ```
 
@@ -1044,10 +1044,10 @@ Generating data for a full complete observational DAG like the example above is 
     # Controlling for stuff even though we don't need to
     model_rct_controls <- lm(malaria_risk ~ net + health + income, data = rct_data)
     tidy(model_rct_controls)
-    ## # A tibble: 4 x 5
+    ## # A tibble: 4 × 5
     ##   term        estimate std.error statistic   p.value
     ##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
-    ## 1 (Intercept)  97.7      1.45         67.3 0.       
+    ## 1 (Intercept)  97.7      1.45         67.3 0        
     ## 2 net         -10.8      0.344       -31.3 2.27e-140
     ## 3 health       -0.586    0.0140      -41.8 1.67e-202
     ## 4 income       -0.0310   0.00230     -13.5 1.75e- 37
@@ -1063,7 +1063,7 @@ Generating data for a full complete observational DAG like the example above is 
     rct_data_final <- rct_data %>%
       select(id, income, health, net, malaria_risk)
     head(rct_data_final)
-    ## # A tibble: 6 x 5
+    ## # A tibble: 6 × 5
     ##      id income health   net malaria_risk
     ##   <int>  <dbl>  <dbl> <int>        <dbl>
     ## 1     1   409.   61.3     1         35.1
@@ -1179,7 +1179,7 @@ Generating data for a full complete observational DAG like the example above is 
       mutate(after = year > 2017)
     
     head(did_data)
-    ## # A tibble: 6 x 11
+    ## # A tibble: 6 × 11
     ##      id  year city   net   malaria_risk_base city_effect year_smaller year_effect net_effect malaria_risk after
     ##   <int> <dbl> <chr>  <lgl>             <dbl>       <dbl>        <dbl>       <dbl>      <dbl>        <dbl> <lgl>
     ## 1     1  2014 City B FALSE              53.0        6.25            2       -3.97          0         54.2 FALSE
@@ -1198,7 +1198,7 @@ Generating data for a full complete observational DAG like the example above is 
     ```r
     ggplot(did_data, aes(x = city, y = malaria_risk, color = city)) +
       stat_summary(geom = "pointrange", fun.data = "mean_se") +
-      guides(color = FALSE)
+      guides(color = "none")
     ```
     
     <img src="/example/synthetic-data_files/figure-html/check-risk-increase-1.png" width="75%" style="display: block; margin: auto;" />
@@ -1236,10 +1236,10 @@ Generating data for a full complete observational DAG like the example above is 
     ```r
     model_did <- lm(malaria_risk ~ city + after + city * after, data = did_data)
     tidy(model_did)
-    ## # A tibble: 4 x 5
+    ## # A tibble: 4 × 5
     ##   term                 estimate std.error statistic  p.value
     ##   <chr>                   <dbl>     <dbl>     <dbl>    <dbl>
-    ## 1 (Intercept)             59.2      0.549    108.   0.      
+    ## 1 (Intercept)             59.2      0.549    108.   0       
     ## 2 cityCity B               5.17     0.778      6.64 3.71e-11
     ## 3 afterTRUE               -7.47     0.939     -7.96 2.61e-15
     ## 4 cityCity B:afterTRUE   -10.2      1.32      -7.79 9.67e-15
@@ -1289,7 +1289,7 @@ Generating data for a full complete observational DAG like the example above is 
     did_data_final <- did_data %>%
       select(id, year, city, net, malaria_risk)
     head(did_data_final)
-    ## # A tibble: 6 x 5
+    ## # A tibble: 6 × 5
     ##      id  year city   net   malaria_risk
     ##   <int> <dbl> <chr>  <lgl>        <dbl>
     ## 1     1  2014 City B FALSE         54.2
@@ -1410,7 +1410,7 @@ Generating data for a full complete observational DAG like the example above is 
       mutate(income_centered = income - 450)
     
     head(rdd_data)
-    ## # A tibble: 6 x 11
+    ## # A tibble: 6 × 11
     ##      id income below_cutoff net_sharp net_fuzzy malaria_risk_base malaria_effect_sharp malaria_risk_sharp malaria_effect_fuzzy malaria_risk_fuzzy income_centered
     ##   <int>  <dbl> <lgl>        <lgl>     <lgl>                 <dbl>                <dbl>              <dbl>                <dbl>              <dbl>           <dbl>
     ## 1     1   409. TRUE         TRUE      FALSE                  56.5               -19.1                38.0                -4.09               47.5           -40.5
@@ -1430,7 +1430,7 @@ Generating data for a full complete observational DAG like the example above is 
     ggplot(rdd_data, aes(x = income, y = net_sharp, color = below_cutoff)) +
       geom_vline(xintercept = 450) +
       geom_point(alpha = 0.3, position = position_jitter(width = NULL, height = 0.2)) +
-      guides(color = FALSE)
+      guides(color = "none")
     ```
     
     <img src="/example/synthetic-data_files/figure-html/sharp-running-var-cutoff-1.png" width="75%" style="display: block; margin: auto;" />
@@ -1442,7 +1442,7 @@ Generating data for a full complete observational DAG like the example above is 
     ggplot(rdd_data, aes(x = income, y = net_fuzzy, color = below_cutoff)) +
       geom_vline(xintercept = 450) +
       geom_point(alpha = 0.3, position = position_jitter(width = NULL, height = 0.2)) +
-      guides(color = FALSE)
+      guides(color = "none")
     ```
     
     <img src="/example/synthetic-data_files/figure-html/fuzzy-running-var-cutoff-1.png" width="75%" style="display: block; margin: auto;" />
@@ -1483,10 +1483,10 @@ Generating data for a full complete observational DAG like the example above is 
                       data = filter(rdd_data,
                                     income_centered >= -50 & income_centered <= 50))
     tidy(model_sharp)
-    ## # A tibble: 3 x 5
+    ## # A tibble: 3 × 5
     ##   term            estimate std.error statistic  p.value
     ##   <chr>              <dbl>     <dbl>     <dbl>    <dbl>
-    ## 1 (Intercept)      40.7       0.462      88.1  0.      
+    ## 1 (Intercept)      40.7       0.462      88.1  0       
     ## 2 income_centered  -0.0197    0.0144     -1.37 1.72e- 1
     ## 3 net_sharpTRUE   -10.6       0.815     -13.0  1.67e-37
     ```
@@ -1552,7 +1552,7 @@ Generating data for a full complete observational DAG like the example above is 
     rdd_data_final_sharp <- rdd_data %>%
       select(id, income, net = net_sharp, malaria_risk = malaria_risk_sharp)
     head(rdd_data_final_sharp)
-    ## # A tibble: 6 x 4
+    ## # A tibble: 6 × 4
     ##      id income net   malaria_risk
     ##   <int>  <dbl> <lgl>        <dbl>
     ## 1     1   409. TRUE          38.0
@@ -1565,7 +1565,7 @@ Generating data for a full complete observational DAG like the example above is 
     rdd_data_final_fuzzy <- rdd_data %>%
       select(id, income, net = net_fuzzy, malaria_risk = malaria_risk_fuzzy)
     head(rdd_data_final_fuzzy)
-    ## # A tibble: 6 x 4
+    ## # A tibble: 6 × 4
     ##      id income net   malaria_risk
     ##   <int>  <dbl> <lgl>        <dbl>
     ## 1     1   409. FALSE         47.5
@@ -1607,7 +1607,7 @@ Generating data for a full complete observational DAG like the example above is 
                      latent = "U")
     
     ggdag_status(iv_dag) +
-      guides(color = FALSE) +
+      guides(color = "none") +
       theme_dag()
     ```
     
@@ -1678,7 +1678,7 @@ Generating data for a full complete observational DAG like the example above is 
              # Rescale so it doesn't go below 0
              malaria_risk = rescale(malaria_risk, to = c(5, 80)))
     iv_data
-    ## # A tibble: 1,578 x 9
+    ## # A tibble: 1,578 × 9
     ##       id risk_factors distance net_score net_probability   net malaria_risk_base malaria_effect malaria_risk
     ##    <int>        <dbl>    <dbl>     <dbl>           <dbl> <int>             <dbl>          <dbl>        <dbl>
     ##  1     1         69.8    3.98      -202.           0.766     1              71.1           14.9         36.5
@@ -1736,7 +1736,7 @@ Generating data for a full complete observational DAG like the example above is 
     ```r
     model_forbidden <- lm(malaria_risk ~ net + risk_factors, data = iv_data)
     tidy(model_forbidden)
-    ## # A tibble: 3 x 5
+    ## # A tibble: 3 × 5
     ##   term         estimate std.error statistic   p.value
     ##   <chr>           <dbl>     <dbl>     <dbl>     <dbl>
     ## 1 (Intercept)    20.6     0.873        23.6 6.98e-106
@@ -1778,7 +1778,7 @@ Generating data for a full complete observational DAG like the example above is 
       select(id, net, distance, malaria_risk, risk_factors)
     
     head(iv_data_final)
-    ## # A tibble: 6 x 5
+    ## # A tibble: 6 × 5
     ##      id   net distance malaria_risk risk_factors
     ##   <int> <int>    <dbl>        <dbl>        <dbl>
     ## 1     1     1     3.98         36.5         69.8
@@ -1906,7 +1906,7 @@ wakefield_data <- r_data_frame(
   survey_question_2 = likert()
 )
 head(wakefield_data)
-## # A tibble: 6 x 8
+## # A tibble: 6 × 8
 ##   ID    treatment outcome Race       age sex      survey_question_1 survey_question_2
 ##   <chr>     <int>   <dbl> <fct>    <int> <fct>    <ord>             <ord>            
 ## 1 001           0    544. White       35 Intersex Disagree          Agree            
@@ -1955,7 +1955,7 @@ faux_data %>%
   group_by(variable) %>%
   summarize(mean = mean(value),
             sd = sd(value))
-## # A tibble: 3 x 3
+## # A tibble: 3 × 3
 ##   variable  mean    sd
 ##   <chr>    <dbl> <dbl>
 ## 1 A        10.2   2.08

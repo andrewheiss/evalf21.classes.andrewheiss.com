@@ -132,7 +132,7 @@ However, unless you use very short names, it is likely that the text will not fi
 
 
 ```r
-simple_dag_with_coords_and_labels <- dagify(
+dag_with_coords_and_labels <- dagify(
   y ~ x + a + b,
   x ~ a + b,
   exposure = "x",
@@ -143,9 +143,9 @@ simple_dag_with_coords_and_labels <- dagify(
                 y = c(x = 2, a = 1, b = 3, y = 2))
 )
 
-ggdag_status(simple_dag_with_coords_and_labels,
+ggdag_status(dag_with_coords_and_labels,
              use_labels = "label", text = FALSE) +
-  guides(fill = FALSE, color = FALSE) +  # Disable the legend
+  guides(fill = "none", color = "none") +  # Disable the legend
   theme_dag()
 ```
 
@@ -257,7 +257,7 @@ bb="0,0,1,1"
 ')
 
 ggdag_status(model_from_dagitty_rounded, text = FALSE, use_labels = "name") +
-  guides(color = FALSE) +  # Turn off legend
+  guides(color = "none") +  # Turn off legend
   theme_dag()
 ```
 
@@ -294,7 +294,7 @@ mosquito_dag <- dagify(
 )
 
 ggdag_status(mosquito_dag, use_labels = "label", text = FALSE) +
-  guides(fill = FALSE, color = FALSE) +  # Disable the legend
+  guides(fill = "none", color = "none") +  # Disable the legend
   theme_dag()
 ```
 
@@ -376,13 +376,13 @@ In the interest of space, we will not verify all these implied independencies, b
     lm(malaria_risk ~ household + health + income + net + temperature,
        data = mosquito_nets) %>%
       broom::tidy()
-    ## # A tibble: 6 x 5
+    ## # A tibble: 6 × 5
     ##   term        estimate std.error statistic   p.value
     ##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
-    ## 1 (Intercept)  76.2      0.966      78.9   0.       
+    ## 1 (Intercept)  76.2      0.966      78.9   0        
     ## 2 household    -0.0155   0.0893     -0.173 8.63e-  1
     ## 3 health        0.148    0.0107     13.9   9.75e- 42
-    ## 4 income       -0.0751   0.00104   -72.6   0.       
+    ## 4 income       -0.0751   0.00104   -72.6   0        
     ## 5 netTRUE     -10.4      0.266     -39.2   2.63e-241
     ## 6 temperature   1.01     0.0310     32.5   1.88e-181
     ```

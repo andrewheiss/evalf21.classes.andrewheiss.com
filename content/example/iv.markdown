@@ -311,11 +311,9 @@ modelsummary(list("Forbidden" = model_forbidden, "OLS" = model_naive,
              stars = TRUE) %>%
   # Add a background color to rows 3 and 7
   row_spec(c(3, 7), background = "#F5ABEA")
-## Warning: In version 0.8.0 of the `modelsummary` package, the default significance markers produced by the `stars=TRUE` argument were changed to be consistent with R's defaults.
-## This warning is displayed once per session.
 ```
 
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
  <thead>
   <tr>
    <th style="text-align:left;">   </th>
@@ -404,12 +402,8 @@ modelsummary(list("Forbidden" = model_forbidden, "OLS" = model_naive,
    <td style="text-align:center;">  </td>
   </tr>
 </tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; border:0;" colspan="100%">
-<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td>
-</tr>
-</tfoot>
+<tfoot><tr><td style="padding: 0; " colspan="100%">
+<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td></tr></tfoot>
 </table>
 
 Note how the coefficients for `educ_hat` and `educ` in the 2SLS models are close to the coefficient for `educ` in the forbidden model that accounts for ability. That's the magic of instrumental variables!
@@ -596,7 +590,7 @@ modelsummary(list("OLS" = model_naive, "2SLS (by hand)" = second_stage,
   row_spec(c(3, 5), background = "#F5ABEA")
 ```
 
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
  <thead>
   <tr>
    <th style="text-align:left;">   </th>
@@ -661,12 +655,8 @@ modelsummary(list("OLS" = model_naive, "2SLS (by hand)" = second_stage,
    <td style="text-align:center;">  </td>
   </tr>
 </tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; border:0;" colspan="100%">
-<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td>
-</tr>
-</tfoot>
+<tfoot><tr><td style="padding: 0; " colspan="100%">
+<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td></tr></tfoot>
 </table>
 
 The 2SLS effect is roughly twice as large and is arguably more accurate, since it has removed the endogeneity from education. An extra year of school leads to an extra \$111.56 dollars a month in income (in 1980 dollars).
@@ -878,7 +868,7 @@ modelsummary(list("Naive OLS" = model_naive, "2SLS" = model_2sls),
   row_spec(3, background = "#F5ABEA")
 ```
 
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
  <thead>
   <tr>
    <th style="text-align:left;">   </th>
@@ -973,12 +963,8 @@ modelsummary(list("Naive OLS" = model_naive, "2SLS" = model_2sls),
    <td style="text-align:center;">  </td>
   </tr>
 </tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; border:0;" colspan="100%">
-<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td>
-</tr>
-</tfoot>
+<tfoot><tr><td style="padding: 0; " colspan="100%">
+<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td></tr></tfoot>
 </table>
 
 ### Extra diagnostics

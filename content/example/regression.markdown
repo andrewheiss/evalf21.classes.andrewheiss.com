@@ -11,8 +11,8 @@ toc: true
 editor_options:
   chunk_output_type: console
 ---
-<script src="/rmarkdown-libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="/rmarkdown-libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
 If you want to follow along with this example, you can download the data below:
 
@@ -133,8 +133,7 @@ ggplot(sat_gpa, aes(x = gpa_hs, y = gpa_fy)) +
 sat_gpa %>%
   group_by(sex) %>%
   summarize(correlation = cor(sat_total, gpa_fy))
-## `summarise()` ungrouping output (override with `.groups` argument)
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   sex    correlation
 ##   <chr>        <dbl>
 ## 1 Female       0.493
@@ -164,8 +163,7 @@ ggplot(sat_gpa, aes(x = gpa_hs, y = gpa_fy, color = sex)) +
 sat_gpa %>%
   group_by(sex) %>%
   summarize(correlation = cor(gpa_hs, gpa_fy))
-## `summarise()` ungrouping output (override with `.groups` argument)
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   sex    correlation
 ##   <chr>        <dbl>
 ## 1 Female       0.597
@@ -190,7 +188,7 @@ model_sat_gpa <- lm(gpa_fy ~ sat_total, data = sat_gpa)
 
 # Look at the model results and include confidence intervals for the coefficients
 tidy(model_sat_gpa, conf.int = TRUE)
-## # A tibble: 2 x 7
+## # A tibble: 2 × 7
 ##   term        estimate std.error statistic  p.value conf.low conf.high
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>
 ## 1 (Intercept)  0.00193   0.152      0.0127 9.90e- 1  -0.296     0.300 
@@ -207,7 +205,7 @@ We can look at the summary table of the regression to check the `\(R^2\)`:
 
 ```r
 glance(model_sat_gpa)
-## # A tibble: 1 x 12
+## # A tibble: 1 × 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC deviance df.residual  nobs
 ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>
 ## 1     0.212         0.211 0.658      268. 1.39e-53     1  -999. 2005. 2019.     432.         998  1000
@@ -228,7 +226,7 @@ $$
 model_sat_gpa_types <- lm(gpa_fy ~ sat_verbal + sat_math, data = sat_gpa)
 
 tidy(model_sat_gpa_types, conf.int = TRUE)
-## # A tibble: 3 x 7
+## # A tibble: 3 × 7
 ##   term        estimate std.error statistic  p.value conf.low conf.high
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>
 ## 1 (Intercept)  0.00737   0.152      0.0484 9.61e- 1  -0.291     0.306 
@@ -243,7 +241,7 @@ The adjusted `\(R^2\)` (which we need to look at because we're using more than o
 
 ```r
 glance(model_sat_gpa_types)
-## # A tibble: 1 x 12
+## # A tibble: 1 × 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC deviance df.residual  nobs
 ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>
 ## 1     0.212         0.211 0.658      134. 2.36e-52     2  -999. 2006. 2026.     432.         997  1000
@@ -262,7 +260,7 @@ $$
 model_sat_gpa_hs <- lm(gpa_fy ~ gpa_hs, data = sat_gpa)
 
 tidy(model_sat_gpa_hs)
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)   0.0913    0.118      0.775 4.39e- 1
@@ -276,7 +274,7 @@ The `\(R^2\)` value is 0.295, which means that nearly 30% of the variation in co
 
 ```r
 glance(model_sat_gpa_hs)
-## # A tibble: 1 x 12
+## # A tibble: 1 × 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC deviance df.residual  nobs
 ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>
 ## 1     0.295         0.295 0.622      418. 6.93e-78     1  -943. 1893. 1908.     386.         998  1000
@@ -295,7 +293,7 @@ $$
 model_sat_sex <- lm(gpa_fy ~ sat_total + sex, data = sat_gpa)
 
 tidy(model_sat_sex, conf.int = TRUE)
-## # A tibble: 3 x 7
+## # A tibble: 3 × 7
 ##   term        estimate std.error statistic  p.value conf.low conf.high
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>
 ## 1 (Intercept)  -0.0269   0.149      -0.181 8.57e- 1  -0.319     0.265 
@@ -310,7 +308,7 @@ The combination of these two variables, however, doesn't boost the model's expla
 
 ```r
 glance(model_sat_sex)
-## # A tibble: 1 x 12
+## # A tibble: 1 × 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC deviance df.residual  nobs
 ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>
 ## 1     0.245         0.243 0.644      162. 1.44e-61     2  -978. 1964. 1983.     414.         997  1000
@@ -329,7 +327,7 @@ $$
 model_sat_hs_sex <- lm(gpa_fy ~ sat_total + gpa_hs + sex, data = sat_gpa)
 
 tidy(model_sat_hs_sex, conf.int = TRUE)
-## # A tibble: 4 x 7
+## # A tibble: 4 × 7
 ##   term        estimate std.error statistic  p.value conf.low conf.high
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>
 ## 1 (Intercept)  -0.836    0.148       -5.63 2.35e- 8  -1.13     -0.544 
@@ -350,7 +348,7 @@ As always, the adjusted `\(R^2\)` shows us how well the model fits overall (agai
 
 ```r
 glance(model_sat_hs_sex)
-## # A tibble: 1 x 12
+## # A tibble: 1 × 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC deviance df.residual  nobs
 ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>
 ## 1     0.367         0.365 0.590      192. 2.67e-98     3  -890. 1790. 1815.     347.         996  1000
@@ -470,12 +468,12 @@ modelsummary(list(model_sat_gpa, model_sat_gpa_types, model_sat_gpa_hs,
    <td style="text-align:center;"> -0.143 </td>
   </tr>
   <tr>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:center;">  </td>
-   <td style="text-align:center;">  </td>
-   <td style="text-align:center;">  </td>
-   <td style="text-align:center;"> (0.041) </td>
-   <td style="text-align:center;"> (0.039) </td>
+   <td style="text-align:left;box-shadow: 0px 1px">  </td>
+   <td style="text-align:center;box-shadow: 0px 1px">  </td>
+   <td style="text-align:center;box-shadow: 0px 1px">  </td>
+   <td style="text-align:center;box-shadow: 0px 1px">  </td>
+   <td style="text-align:center;box-shadow: 0px 1px"> (0.041) </td>
+   <td style="text-align:center;box-shadow: 0px 1px"> (0.039) </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Num.Obs. </td>

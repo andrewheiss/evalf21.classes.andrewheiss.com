@@ -59,7 +59,7 @@ income_dag <- dagify(post_income ~ program + age + sex + pre_income,
                                          sex = 1, pre_income = 3)))
 
 ggdag_status(income_dag, use_labels = "label", text = FALSE, seed = 1234) +
-  guides(color = FALSE) +
+  guides(color = "none") +
   theme_dag()
 ```
 
@@ -83,7 +83,7 @@ income_dag_rct <- dagify(post_income ~ program + age + sex + pre_income,
                                              sex = 1, pre_income = 3)))
 
 ggdag_status(income_dag_rct, use_labels = "label", text = FALSE, seed = 1234) +
-  guides(color = FALSE) +
+  guides(color = "none") +
   theme_dag()
 ```
 
@@ -101,7 +101,7 @@ Before calculating the effect of the program, you first check to see how well ba
 village_randomized %>%
   count(program) %>%
   mutate(prop = n / sum(n))
-## # A tibble: 2 x 3
+## # A tibble: 2 × 3
 ##   program        n  prop
 ##   <chr>      <int> <dbl>
 ## 1 No program   503 0.503
@@ -117,7 +117,7 @@ village_randomized %>%
   summarize(prop_male = mean(sex_num),
             avg_age = mean(age),
             avg_pre_income = mean(pre_income))
-## # A tibble: 2 x 4
+## # A tibble: 2 × 4
 ##   program    prop_male avg_age avg_pre_income
 ##   <chr>          <dbl>   <dbl>          <dbl>
 ## 1 No program     0.584    34.9           803.
@@ -143,7 +143,7 @@ There were more men in both the treatment and control groups, but the proportion
 # giving us the 95% confidence interval.
 plot_diff_sex <- ggplot(village_randomized, aes(x = program, y = sex_num, color = program)) +
   stat_summary(geom = "pointrange", fun.data = "mean_se", fun.args = list(mult = 1.96)) +
-  guides(color = FALSE) +
+  guides(color = "none") +
   labs(x = NULL, y = "Proportion male")
 # plot_diff_sex  # Uncomment this if you want to see this plot by itself
 
@@ -165,12 +165,12 @@ The distribution of ages looks basically the same in the treatment and control g
 ```r
 plot_diff_age <- ggplot(village_randomized, aes(x = program, y = age, color = program)) +
   stat_summary(geom = "pointrange", fun.data = "mean_se", fun.args = list(mult = 1.96)) +
-  guides(color = FALSE) +
+  guides(color = "none") +
   labs(x = NULL, y = "Age")
 
 plot_hist_age <- ggplot(village_randomized, aes(x = age, fill = program)) +
   geom_histogram(binwidth = 1, color = "white") +
-  guides(fill = FALSE) +
+  guides(fill = "none") +
   labs(x = "Age", y = "Count") +
   facet_wrap(vars(program), ncol = 1)
 
@@ -185,12 +185,12 @@ Pre-program income is also distributed the same—and has no substantial differe
 ```r
 plot_diff_income <- ggplot(village_randomized, aes(x = program, y = pre_income, color = program)) +
   stat_summary(geom = "pointrange", fun.data = "mean_se", fun.args = list(mult = 1.96)) +
-  guides(color = FALSE) +
+  guides(color = "none") +
   labs(x = NULL, y = "Pre income")
 
 plot_hist_income <- ggplot(village_randomized, aes(x = pre_income, fill = program)) +
   geom_histogram(binwidth = 20, color = "white") +
-  guides(fill = FALSE) +
+  guides(fill = "none") +
   labs(x = "Pre income", y = "Count") +
   facet_wrap(vars(program), ncol = 1)
 
@@ -222,7 +222,7 @@ This is simply the average outcome for people in the program minus the average o
 village_randomized %>%
   group_by(program) %>%
   summarize(avg_post = mean(post_income))
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   program    avg_post
 ##   <chr>         <dbl>
 ## 1 No program    1180.
@@ -237,10 +237,10 @@ Finding that difference required some manual math, so as a shortcut, you run a r
 ```r
 model_rct <- lm(post_income ~ program, data = village_randomized)
 tidy(model_rct)
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term           estimate std.error statistic  p.value
 ##   <chr>             <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)      1180.       4.27     276.  0.      
+## 1 (Intercept)      1180.       4.27     276.  0       
 ## 2 programProgram     99.2      6.06      16.4 1.23e-53
 ```
 
@@ -250,7 +250,7 @@ Based on your RCT, you conclude that the program causes an average increase of $
 ```r
 ggplot(village_randomized, aes(x = program, y = post_income, color = program)) +
   stat_summary(geom = "pointrange", fun.data = "mean_se", fun.args = list(mult = 1.96)) +
-  guides(color = FALSE) +
+  guides(color = "none") +
   labs(x = NULL, y = "Post income")
 ```
 

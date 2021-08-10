@@ -477,7 +477,7 @@ Here's what that looks like as a histogram:
 ```{r vis-histogram}
 ggplot(temp_data, aes(x = outcome, fill = treatment)) +
   geom_histogram(binwidth = 5, color = "white", boundary = 0) +
-  guides(fill = FALSE) +  # Turn off the fill legend since it's redundant
+  guides(fill = "none") +  # Turn off the fill legend since it's redundant
   facet_wrap(vars(treatment), ncol = 1)
 ```
 
@@ -494,7 +494,7 @@ And with a point range:
 # hahaha these error bars are tiny
 ggplot(temp_data, aes(x = treatment, y = outcome, color = treatment)) +
   stat_summary(geom = "pointrange", fun.data = "mean_se") +
-  guides(color = FALSE)  # Turn off the color legend since it's redundant
+  guides(color = "none")  # Turn off the color legend since it's redundant
 ```
 
 
@@ -916,7 +916,7 @@ head(did_data)
 ```{r check-risk-increase, indent="    "}
 ggplot(did_data, aes(x = city, y = malaria_risk, color = city)) +
   stat_summary(geom = "pointrange", fun.data = "mean_se") +
-  guides(color = FALSE)
+  guides(color = "none")
 ```
 
     Does risk decrease over time? And are the trends parallel? There was a weird random spike in City B in 2017 for whatever reason, but in general, the trends in the two cities are pretty parallel from 2013 to 2017.
@@ -1107,7 +1107,7 @@ head(rdd_data)
 ggplot(rdd_data, aes(x = income, y = net_sharp, color = below_cutoff)) +
   geom_vline(xintercept = 450) +
   geom_point(alpha = 0.3, position = position_jitter(width = NULL, height = 0.2)) +
-  guides(color = FALSE)
+  guides(color = "none")
 ```
 
     Is there a cutoff in the running variable when we use the fuzzy net variable? Yep! There are some richer people using the program and some poorer people not using it.
@@ -1116,7 +1116,7 @@ ggplot(rdd_data, aes(x = income, y = net_sharp, color = below_cutoff)) +
 ggplot(rdd_data, aes(x = income, y = net_fuzzy, color = below_cutoff)) +
   geom_vline(xintercept = 450) +
   geom_point(alpha = 0.3, position = position_jitter(width = NULL, height = 0.2)) +
-  guides(color = FALSE)
+  guides(color = "none")
 ```
 
 6. **Try it out!**
@@ -1240,7 +1240,7 @@ iv_dag <- dagify(mal ~ net + U,
                  latent = "U")
 
 ggdag_status(iv_dag) +
-  guides(color = FALSE) +
+  guides(color = "none") +
   theme_dag()
 ```
 

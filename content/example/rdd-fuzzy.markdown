@@ -11,8 +11,8 @@ toc: true
 editor_options:
   chunk_output_type: console
 ---
-<script src="/rmarkdown-libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="/rmarkdown-libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
 
 
@@ -64,7 +64,7 @@ ggplot(tutoring, aes(x = entrance_exam, y = tutoring_text, color = entrance_exam
   # Add labels
   labs(x = "Entrance exam score", y = "Participated in tutoring program") +
   # Turn off the color legend, since it's redundant
-  guides(color = FALSE)
+  guides(color = "none")
 ```
 
 <img src="/example/rdd-fuzzy_files/figure-html/fuzzy-compliance-1.png" width="75%" style="display: block; margin: auto;" />
@@ -78,7 +78,7 @@ tutoring %>%
   summarize(count = n()) %>%
   group_by(tutoring) %>%
   mutate(prop = count / sum(count))
-## # A tibble: 4 x 4
+## # A tibble: 4 × 4
 ## # Groups:   tutoring [2]
 ##   tutoring `entrance_exam <= 70` count   prop
 ##   <lgl>    <lgl>                 <int>  <dbl>
@@ -173,7 +173,7 @@ tutoring_centered <- tutoring %>%
   mutate(entrance_centered = entrance_exam - 70,
          below_cutoff = entrance_exam <= 70)
 tutoring_centered
-## # A tibble: 1,000 x 7
+## # A tibble: 1,000 × 7
 ##       id entrance_exam tutoring tutoring_text exit_exam entrance_centered below_cutoff
 ##    <dbl>         <dbl> <lgl>    <chr>             <dbl>             <dbl> <lgl>       
 ##  1     1          92.4 FALSE    No tutor           78.1            22.4   FALSE       
@@ -207,7 +207,7 @@ model_sans_instrument <- lm(exit_exam ~ entrance_centered + tutoring,
                                           entrance_centered >= -10 &
                                             entrance_centered <= 10))
 tidy(model_sans_instrument)
-## # A tibble: 3 x 5
+## # A tibble: 3 × 5
 ##   term              estimate std.error statistic   p.value
 ##   <chr>                <dbl>     <dbl>     <dbl>     <dbl>
 ## 1 (Intercept)         59.3      0.503     118.   9.75e-313
@@ -261,7 +261,7 @@ modelsummary(list("No instrument (wrong)" = model_sans_instrument,
   row_spec(5, background = "#F5ABEA")
 ```
 
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
  <thead>
   <tr>
    <th style="text-align:left;">   </th>
@@ -296,14 +296,14 @@ modelsummary(list("No instrument (wrong)" = model_sans_instrument,
    <td style="text-align:center;background-color: #F5ABEA !important;"> 9.741*** </td>
   </tr>
   <tr>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:center;"> (0.744) </td>
-   <td style="text-align:center;"> (1.912) </td>
+   <td style="text-align:left;box-shadow: 0px 1px">  </td>
+   <td style="text-align:center;box-shadow: 0px 1px"> (0.744) </td>
+   <td style="text-align:center;box-shadow: 0px 1px"> (1.912) </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Num.Obs. </td>
    <td style="text-align:center;"> 403 </td>
-   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> 403 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> R2 </td>
@@ -315,18 +315,9 @@ modelsummary(list("No instrument (wrong)" = model_sans_instrument,
    <td style="text-align:center;"> 119.103 </td>
    <td style="text-align:center;">  </td>
   </tr>
-  <tr>
-   <td style="text-align:left;"> N </td>
-   <td style="text-align:center;">  </td>
-   <td style="text-align:center;"> 403 </td>
-  </tr>
 </tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; border:0;" colspan="100%">
-<sup></sup> * p &lt; 0.1, ** p &lt; 0.05, *** p &lt; 0.01</td>
-</tr>
-</tfoot>
+<tfoot><tr><td style="padding: 0; " colspan="100%">
+<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td></tr></tfoot>
 </table>
 
 We can (and should!) [do all the other things that we talked about in the regression discontinuity example](https://evalf20.classes.andrewheiss.com/example/rdd/#parametric-estimation), like modifying the bandwidth, adding polynomial terms, and so forth to see how robust the finding is. But we won't do any of that here.
@@ -349,14 +340,14 @@ rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam,
 ## Kernel                   Triangular
 ## VCE method                       NN
 ## 
-## Number of Obs.                 238         762
-## Eff. Number of Obs.            170         347
-## Order est. (p)                   1           1
-## Order bias  (q)                  2           2
-## BW est. (h)                 12.985      12.985
-## BW bias (b)                 19.733      19.733
-## rho (h/b)                    0.658       0.658
-## Unique Obs.                    238         762
+## Number of Obs.                  238          762
+## Eff. Number of Obs.             170          347
+## Order est. (p)                    1            1
+## Order bias  (q)                   2            2
+## BW est. (h)                  12.985       12.985
+## BW bias (b)                  19.733       19.733
+## rho (h/b)                     0.658        0.658
+## Unique Obs.                     238          762
 ## 
 ## =============================================================================
 ##         Method     Coef. Std. Err.         z     P>|z|      [ 95% C.I. ]       
