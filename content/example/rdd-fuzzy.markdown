@@ -191,7 +191,7 @@ tutoring_centered
 
 Now we have a new column named `below_cutoff` that we'll use as an instrument. Most of the time this will be the same as the `tutoring` column, since most people are compliers. But some people didn't comply, like person 8 here who was *not* below the cutoff but still used the tutoring program.
 
-Before using the instrument, let's first run a model that assumes the cutoff is sharp. As we did with [the sharp parametric analysis](https://evalf20.classes.andrewheiss.com/example/rdd/#parametric-estimation), we'll include two explanatory variables:
+Before using the instrument, let's first run a model that assumes the cutoff is sharp. As we did with [the sharp parametric analysis](/example/rdd/#parametric-estimation), we'll include two explanatory variables:
 
 $$
 \text{Exit exam} = \beta_0 + \beta_1 \text{Entrance exam score}_\text{centered} + \beta_2 \text{Tutoring program} + \epsilon
@@ -320,11 +320,11 @@ modelsummary(list("No instrument (wrong)" = model_sans_instrument,
 <sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td></tr></tfoot>
 </table>
 
-We can (and should!) [do all the other things that we talked about in the regression discontinuity example](https://evalf20.classes.andrewheiss.com/example/rdd/#parametric-estimation), like modifying the bandwidth, adding polynomial terms, and so forth to see how robust the finding is. But we won't do any of that here.
+We can (and should!) [do all the other things that we talked about in the regression discontinuity example](/example/rdd/#parametric-estimation), like modifying the bandwidth, adding polynomial terms, and so forth to see how robust the finding is. But we won't do any of that here.
 
 ### Fuzzy nonparametric estimation
 
-We can also use nonparametric methods to measure the size of the fuzzy gap at the cutoff. We'll use `rdrobust()` just like we [did in the sharp example](https://evalf20.classes.andrewheiss.com/example/rdd/#nonparametric-estimation-1). The only difference is that we have to add one extra argument. That's it!
+We can also use nonparametric methods to measure the size of the fuzzy gap at the cutoff. We'll use `rdrobust()` just like we [did in the sharp example](/example/rdd/#nonparametric-estimation-1). The only difference is that we have to add one extra argument. That's it!
 
 To do fuzzy estimation with `rdrobust()`, use the `fuzzy` argument to specify the treatment column (or `tutoring` in our case). **Importantly** (and confusingly! this took me waaaaay too long to figure out!), you ***do not*** need to specify an instrument (or even create one!). All you need to specify is the column that indicates treatment status—`rdrobust()` will do all the above/below-the-cutoff instrument stuff behind the scenes for you.
 
@@ -359,4 +359,4 @@ rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam,
 
 That's all! Using nonparametric methods, with a triangular kernel and a bandwidth of ±12.96, the causal effect of the tutoring program for compliers in the bandwidth is 9.683.
 
-We can (and should!) [do all the other nonparametric robustness checks that we talked about in the regression discontinuity example](https://evalf20.classes.andrewheiss.com/example/rdd/#nonparametric-estimation), like modifying the bandwidth (ideal, half, double) and messing with the kernel (uniform, triangular, Epanechnikov) to see how robust the finding is. But again, we won't do any of that here.
+We can (and should!) [do all the other nonparametric robustness checks that we talked about in the regression discontinuity example](/example/rdd/#nonparametric-estimation), like modifying the bandwidth (ideal, half, double) and messing with the kernel (uniform, triangular, Epanechnikov) to see how robust the finding is. But again, we won't do any of that here.

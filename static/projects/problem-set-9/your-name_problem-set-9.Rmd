@@ -37,8 +37,8 @@ You don't have any data for this, but that's okay! You can simulate some data an
 
 These two guides will be incredibly helpful for this assignment:
 
-- Generating random numbers: <https://evalf20.classes.andrewheiss.com/example/random-numbers/>
-- The ultimate guide to generating synthetic data for causal inference: <https://evalf20.classes.andrewheiss.com/example/synthetic-data/>
+- Generating random numbers: <https://evalf21.classes.andrewheiss.com/example/random-numbers/>
+- The ultimate guide to generating synthetic data for causal inference: <https://evalf21.classes.andrewheiss.com/example/synthetic-data/>
 
 
 ## 1: Draw a DAG that maps out how all the columns you care about are related
@@ -56,7 +56,7 @@ math_camp_dag <- dagify(grade ~ camp + gpa + gre,
 
 ggdag_status(math_camp_dag) +
   theme_dag() +
-  guides(color = FALSE)  # Turn off legend
+  guides(color = "none")  # Turn off legend
 ```
 
 
@@ -74,7 +74,7 @@ Here's how these columns are measured:
 In the DAG, there are three sets of relationships, or models:
 
 - **GPA is associated with GRE scores**: Every 1 point increase in GPA (i.e. moving from a 2.0 to a 3.0) increases GRE scores by 10, on average.
-- **Math camp is associated with undergraduate GPA and GRE scores**: Math camp here is a binary variable, so you can't say things like "every 1 point increase in GRE scores changes math camp by X". Instead, you'll want to do something similar to [the example for creating an effect in an observational DAG](https://evalf20.classes.andrewheiss.com/example/synthetic-data/#creating-an-effect-in-an-observational-dag): create a column named `camp_score`, have GPA and GRE *decrease* that score (since people are less likely to enroll in math camp if they have higher GPAs and GRE scores), rescale that math camp score column to be between 0 and 1 to create a `camp_probability` column, and then randomly assign people to math camp based on those probabilities. I don't care what the size of the GPA and GRE effects are (since they'll be scaled down and binary-ized anyway)—just make it so that the probability of math camp goes down as GPA and GPA go up.
+- **Math camp is associated with undergraduate GPA and GRE scores**: Math camp here is a binary variable, so you can't say things like "every 1 point increase in GRE scores changes math camp by X". Instead, you'll want to do something similar to [the example for creating an effect in an observational DAG](https://evalf21.classes.andrewheiss.com/example/synthetic-data/#creating-an-effect-in-an-observational-dag): create a column named `camp_score`, have GPA and GRE *decrease* that score (since people are less likely to enroll in math camp if they have higher GPAs and GRE scores), rescale that math camp score column to be between 0 and 1 to create a `camp_probability` column, and then randomly assign people to math camp based on those probabilities. I don't care what the size of the GPA and GRE effects are (since they'll be scaled down and binary-ized anyway)—just make it so that the probability of math camp goes down as GPA and GPA go up.
 - **Final grade is caused by math camp, undergraduate GPA, and GRE scores**: Every 1 point increase in GPA increases final test scores by 10 points, on average. Every 1 point increase in GRE scores increase final test scores by 0.5 points. *Participating in math camp causes a boost of 10 points.* That's the causal effect you're building in.
 
 ## 4: Generate data based on the DAG relationships

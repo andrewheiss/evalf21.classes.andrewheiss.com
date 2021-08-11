@@ -42,7 +42,7 @@ And as always, if you’re struggling, *please* talk to me. Work with classmates
 
 ## Instructions
 
-1.  If you’re using R on your own computer, download this file, [*unzip it*](https://evalf20.classes.andrewheiss.com/resource/unzipping/), and double click on the file named `problem-set-5.Rproj`: [<i class="fas fa-file-archive"></i> `problem-set-5.zip`](/projects/problem-set-5.zip)
+1.  If you’re using R on your own computer, download this file, [*unzip it*](/resource/unzipping/), and double click on the file named `problem-set-5.Rproj`: [<i class="fas fa-file-archive"></i> `problem-set-5.zip`](/projects/problem-set-5.zip)
 
     You’ll need to make sure you have these packages installed on your computer: `tidyverse`, `haven`, `broom`, `fixest`, and `modelsummary`. If you try to load one of those packages with `library(tidyverse)` or `library(haven)`, etc., and R gives an error that the package is missing, use the “Packages” panel in RStudio to install it.
 

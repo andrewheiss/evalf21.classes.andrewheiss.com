@@ -39,8 +39,8 @@ Your task in this problem set is to analyze these two datasets to find the causa
 
 ***Follow these two examples from class as guides:***
 
-- [RCTs](https://evalf20.classes.andrewheiss.com/example/rcts/)
-- [Matching and IPW](https://evalf20.classes.andrewheiss.com/example/matching-ipw/)
+- [RCTs](https://evalf21.classes.andrewheiss.com/example/rcts/)
+- [Matching and IPW](https://evalf21.classes.andrewheiss.com/example/matching-ipw/)
 
 As a reference, Figure 1 shows the DAG for the program:
 

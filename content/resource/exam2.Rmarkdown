@@ -17,7 +17,7 @@ weight: 2
 
 **Crucial resources**:
 
-- [Readings, slides, and videos for randomization and matching](https://evalf20.classes.andrewheiss.com/content/07-content/)
+- [Readings, slides, and videos for randomization and matching](/content/07-content/)
 - [Guide for RCTs](/example/rcts/)
 - Problem set 3
 - Task 1 in problem set 8
@@ -30,7 +30,7 @@ weight: 2
 
 **Crucial resources**:
 
-- [Readings, slides, and videos for randomization and matching](https://evalf20.classes.andrewheiss.com/content/07-content/)
+- [Readings, slides, and videos for randomization and matching](/content/07-content/)
 - [Guide for matching and inverse probability weighting](/example/matching-ipw/)
 - Problem set 3
 - Task 2 in problem set 8
@@ -43,7 +43,7 @@ weight: 2
 
 **Crucial resources**:
 
-- [Readings, slides, and videos for diff-in-diff](https://evalf20.classes.andrewheiss.com/content/08-content/)
+- [Readings, slides, and videos for diff-in-diff](/content/08-content/)
 - [Guide for diff-in-diff](/example/diff-in-diff/)
 - Problem set 4
 - Problem set 5
@@ -58,8 +58,8 @@ weight: 2
 
 **Crucial resources**:
 
-- [Readings, slides, and videos for regression discontinuity I (sharp)](https://evalf20.classes.andrewheiss.com/content/10-content/)
-- [Readings, slides, and videos for regression discontinuity II (fuzzy)](https://evalf20.classes.andrewheiss.com/content/12-content/)
+- [Readings, slides, and videos for regression discontinuity I (sharp)](/content/10-content/)
+- [Readings, slides, and videos for regression discontinuity II (fuzzy)](/content/12-content/)
 - [Guide for sharp diff-in-diff](/example/rdd/)
 - [Guide for fuzzy diff-in-diff](/example/rdd-fuzzy/)
 - Problem set 6
@@ -75,8 +75,8 @@ weight: 2
 
 **Crucial resources**:
 
-- [Readings, slides, and videos for instrumental variables I](https://evalf20.classes.andrewheiss.com/content/11-content/)
-- [Readings, slides, and videos for instrumental variables II](https://evalf20.classes.andrewheiss.com/content/12-content/)
+- [Readings, slides, and videos for instrumental variables I](/content/11-content/)
+- [Readings, slides, and videos for instrumental variables II](/content/12-content/)
 - [Guide for instrumental variables](/example/iv/)
 - Problem set 7
 - Task 5 in problem set 8
