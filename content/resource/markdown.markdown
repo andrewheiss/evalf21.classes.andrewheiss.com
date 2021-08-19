@@ -15,6 +15,14 @@ toc: true
 
 [Markdown](https://daringfireball.net/projects/markdown/) is a special kind of markup language that lets you format text with simple syntax. You can then use a converter program like [pandoc](https://pandoc.org/) to convert Markdown into whatever format you want: HTML, PDF, Word, PowerPoint, etc. ([see the full list of output types here](https://pandoc.org/MANUAL.html#option--to))
 
+<textarea rows="1" class="invisible-text">Delete this text and start playing with Markdown here!</textarea>
+
+
+
+<script src="/js/stackedit.min.js"></script>
+<script src="/js/markdown-config.js"></script>
+
+
 ## Basic Markdown formatting
 
 <table>

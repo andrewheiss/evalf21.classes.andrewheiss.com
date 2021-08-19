@@ -442,3 +442,17 @@ div.warning:before {
 .widgetframe {
     margin-bottom: 2em;
 }
+
+// Invisible textarea for Markdown editor iframe
+.invisible-text {
+    display: none;
+}
+
+.btn-editor {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.stackedit-button-wrapper {
+    text-align: center;
+}
