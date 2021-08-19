@@ -26,6 +26,8 @@ slides: "01-slides"
 
 ## Slides
 
+**Important!!**: In the “Class details” video, I say that there are three books for the class: the World Bank evaluation book, *’Metrics Matter*, and *Causal Inference: The Mixtape*. [That’s not the case this semseter](/syllabus/#books), since we’re using the new *The Effect* book, which replaces both *’Metrics Matter* and the *Mixtape*. So ignore that part of the video. The slides are updated with the correct books, though: [see here](/slides/01-slides.html#85).
+
 The slides for today’s lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
 
 {{% slide-buttons %}}
@@ -112,6 +114,8 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 {{% /div %}}
 
 ## Videos
+
+**Important!!**: In the “Class details” video, I say that there are three books for the class: the World Bank evaluation book, *’Metrics Matter*, and *Causal Inference: The Mixtape*. [That’s not the case this semseter](/syllabus/#books), since we’re using the new *The Effect* book, which replaces both *’Metrics Matter* and the *Mixtape*. So ignore that part of the video. The slides are updated with the correct books, though: [see here](/slides/01-slides.html#85).
 
 Videos for each section of the lecture are [available at this YouTube playlist](https://www.youtube.com/playlist?list=PLS6tnpTr39sHcnk9KcoQVzDywxWRzVWHC).
 
