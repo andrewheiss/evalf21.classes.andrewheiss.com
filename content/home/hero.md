@@ -20,7 +20,7 @@ design:
     text_color_light: true
 
 cta_note:
-  label: PMAP 8141 • Spring 2021<br>Andrew Young School of Policy Studies<br>Georgia State University
+  label: PMAP 8521 • Fall 2021<br>Andrew Young School of Policy Studies<br>Georgia State University
 ---
 
 **Combine research design, causal inference, and econometric tools to measure the effects of social programs**
