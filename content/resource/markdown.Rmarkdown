@@ -150,7 +150,51 @@ Heading 3
 
 ## Math
 
-Markdown uses LaTeX to create fancy mathematical equations. There are like a billion little options and features available for math equations—you can find [helpful examples of the the most common basic commands here](http://www.malinc.se/math/latex/basiccodeen.php).
+### Basic math commands
+
+Markdown uses LaTeX to create fancy mathematical equations. There are like a billion little options and features available for math equations—you can find [helpful examples of the the most common basic commands here](http://www.malinc.se/math/latex/basiccodeen.php). In this class, these will be the most common things you'll use:
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(kableExtra)
+
+math_table <- tribble(
+  ~group, ~Description, ~Command, ~Output,
+  "Letters", "Roman letters", "<code>a b c d e f</code>", "\\(a\\ b\\ c\\ d\\ e\\ f\\)",
+  "Letters", "Greek letters (see <a href='https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols'>this</a> for all possible letters)", "<code>\\alpha \\beta \\Gamma \\gamma</code> <br> <code>\\Delta \\delta \\epsilon</code>", "\\(\\alpha\\ \\beta\\ \\Gamma\\ \\gamma\\ \\Delta\\ \\delta\\ \\epsilon\\)",
+  "Letters", "Letters will automatically be italicized and treated as math variables;<br>if you want actual text in the math, use <code>\\text{}</code>", "Ew: <code>Treatment = \\beta</code> <br>Good: <code>\\text{Treatment} = \\beta</code>", "Ew: \\(Treatment = \\beta\\)<br>Good: \\(\\text{Treatment} = \\beta\\)",
+  "Letters", "Extra spaces will automatically be removed; if you want a space, use <code>\\ </code>", "No space: <code>x y</code> <br> Space: <code>x\\ y</code>", "No space: \\(x y\\) <br>Space: \\(x \\ y\\)",
+  "Superscripts and subscripts", "Use <code>^</code> to make one character superscripted.", "<code>x^2</code>", "\\(x^2\\)",
+  "Superscripts and subscripts", "Wrap the superscripted part in <code>{}</code> if there's more than one character", "<code>x^{2+y}</code>", "\\(x^{2+y}\\)",
+  "Superscripts and subscripts", "Use <code>_</code> to make one character subscripted", "<code>\\beta_1</code>", "\\(\\beta_1\\)",
+  "Superscripts and subscripts", "Wrap the subscripted part in <code>{}</code> if there's more than one character", "<code>\\beta_{i, t}</code>", "\\(\\beta_{i, t}\\)",
+  "Superscripts and subscripts", "Use superscripts and subscripts simultaneously", "<code>\\beta_1^{\\text{Treatment}}</code>", "\\(\\beta_1^{\\text{Treatment}}\\)",
+  "Superscripts and subscripts", "You can even nest them", "<code>x^{2^{2^2}}</code>", "\\(x^{2^{2^2}}\\)",
+  "Math operations", "Addition", "<code>2 + 5 = 7</code>", "\\(2 + 5 = 7\\)",
+  "Math operations", "Subtraction", "<code>2 - 5 = -3</code>", "\\(2 + 5 = -3\\)",
+  "Math operations", "Multiplication", "<code>x \\times y</code> <br> <code>x \\cdot y</code>", "\\(x \\times y\\) <br> \\(x \\cdot y\\)",
+  "Math operations", "Division", "<code>8 \\div 2</code>", "\\(8 \\div 2\\)",
+  "Math operations", "Fractions", "<code>\\frac{8}{2}</code>", "\\(\\frac{8}{2}\\)",
+  "Math operations", "Square roots; use <code>[3]</code> for other roots", "<code>\\sqrt{81} = 9</code> <br> <code>\\sqrt[3]{27} = 3</code>", "\\(\\sqrt{81} = 9\\) <br> \\(\\sqrt[3]{27} = 3\\)",
+  "Math operations", "Summation; use sub/superscripts for extra details", "<code>\\sum x</code> <br> <code>\\sum_{n=1}^{\\infty} \\frac{1}{n}</code>", "\\(\\sum x\\) <br> \\(\\sum_{n=1}^{\\infty} \\frac{1}{n}\\)",
+  "Math operations", "Products; use sub/superscripts for extra details", "<code>\\prod x</code> <br> <code>\\prod_{n=1}^{5} n^2</code>", "\\(\\prod x\\) <br> \\(\\prod_{n=1}^{5} n^2\\)",
+  "Math operations", "Integrals; use sub/superscripts for extra details", "<code>\\int x^2 \\ dx</code> <br> <code>\\int_{1}^{100} x^2 \\ dx</code>", "\\(\\int x^2 \\ dx\\) <br> \\(\\int_{1}^{100} x^2 \\ dx\\)",
+  "Extra symbols", "Add a bar for things like averages", "<code>\\bar{x}</code>", "\\(\\bar{x}\\)",
+  "Extra symbols", "Use an overline for longer things", "Ew: <code>\\bar{abcdef}</code> <br> Good: <code>\\overline{abcdef}</code>", "Ew: \\(\\bar{abcdef}\\) <br> Good: \\(\\overline{abcdef}\\)",
+  "Extra symbols", "Add a hat for things like estimates", "<code>\\hat{y}</code>", "\\(\\hat{y}\\)",
+  "Extra symbols", "Use a wide hat for longer things", "Ew: <code>\\hat{abcdef}</code> <br> Good: <code>\\widehat{abcdef}</code>", "Ew: \\(\\hat{abcdef}\\) <br> Good: \\(\\widehat{abcdef}\\)",
+  "Extra symbols", "Use arrows for DAG-like things", "<code>Z \\rightarrow Y \\leftarrow X</code>", "\\(Z \\rightarrow Y \\leftarrow X\\)",
+  "Bonus fun", "Use colors!; see <a href='https://www.overleaf.com/learn/latex/Using_colours_in_LaTeX'>here</a> for more details and <a href='https://www.overleaf.com/learn/latex/Using_colours_in_LaTeX#Reference_guide'>here</a> for a list of color names", "<code>\\color{red}{y} = \\color{blue}{\\beta_1 x_1}</code>", "\\(\\color{red}{y}\\ \\color{black}{=}\\ \\color{blue}{\\beta_1 x_1}\\)"
+)
+
+math_table %>% 
+  select(-group) %>% 
+  kable(escape = FALSE) %>%
+  kableExtra::pack_rows(index = table(fct_inorder(math_table$group))) %>% 
+  kable_styling()
+```
+
+### Using math inline
 
 You can use math in two different ways: inline or in a display block. To use math inline, wrap it in single dollar signs, like ``\$y = mx + b\$``:
 
@@ -179,6 +223,8 @@ is <span class="math inline">\(\hat{y} = \beta_0 + \beta_1 x_1 + \epsilon\)</spa
 </tbody>
 </table>
 
+### Using math in a block
+
 To put an equation on its own line in a display block, wrap it in double dollar signs, like this:
 
 **Type…**
@@ -205,6 +251,8 @@ But now we just use computers to solve for $x$.
 
 ---
 
+### Dollar signs and math
+
 Because dollar signs are used to indicate math equations, you can't just use dollar signs like normal if you're writing about actual dollars. For instance, if you write `This book costs \$5.75 and this other costs \$40`, Markdown will treat everything that comes between the dollar signs as math, like so: "This book costs $5.75 and this other costs $40". 
 
 To get around that, put a backslash (`\`) in front of the dollar signs, so that `This book costs \\\$5.75 and this other costs \\\$40` becomes "This book costs <span>$5.75</span> and this other costs <span>$40</span>".
@@ -212,7 +260,7 @@ To get around that, put a backslash (`\`) in front of the dollar signs, so that 
 
 ## Tables
 
-There are 4 different ways to hand-create tables in Markdown—I say "hand-create" because it's normally way easier to use R to generate these things with packages like [**pander**](https://rapporter.github.io/pander/) (use `pandoc.table()`) or **knitr** (use [`kable()`](https://bookdown.org/yihui/rmarkdown-cookbook/kable.html)). The two most common are simple tables and pipe tables. [You should look at the full documentation here](https://pandoc.org/MANUAL.html#tables).
+There are 4 different ways to hand-create tables in Markdown—I say "hand-create" because it's normally way easier to use R to generate these things with packages like [**kableExtra**](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) (use `kable()`) or [**pander**](https://rapporter.github.io/pander/) (use `pandoc.table()`). The two most common are simple tables and pipe tables. [You should look at the full documentation here](https://pandoc.org/MANUAL.html#tables).
 
 **For simple tables, type…**
 
@@ -228,11 +276,11 @@ Table: Caption goes here
 
 **…to get…**
 
-  Right     Left     Center     Default
--------     ------ ----------   -------
-     12     12        12            12
-    123     123       123          123
-      1     1          1             1
+| Right | Left |  Center | Default |
+|------:|:-----|:-------:|---------|
+|   12  |  12  |    12   |    12   |
+|  123  |  123 |   123   |   123   |
+|    1  |    1 |     1   |     1   |
 
 Table: Caption goes here
 

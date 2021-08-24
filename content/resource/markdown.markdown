@@ -12,6 +12,8 @@ toc: true
 #       toc: TRUE
 #       fig_caption: yes
 ---
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
 [Markdown](https://daringfireball.net/projects/markdown/) is a special kind of markup language that lets you format text with simple syntax. You can then use a converter program like [pandoc](https://pandoc.org/) to convert Markdown into whatever format you want: HTML, PDF, Word, PowerPoint, etc. ([see the full list of output types here](https://pandoc.org/MANUAL.html#option--to))
 
@@ -147,7 +149,153 @@ Heading 3
 
 ## Math
 
-Markdown uses LaTeX to create fancy mathematical equations. There are like a billion little options and features available for math equations—you can find [helpful examples of the the most common basic commands here](http://www.malinc.se/math/latex/basiccodeen.php).
+### Basic math commands
+
+Markdown uses LaTeX to create fancy mathematical equations. There are like a billion little options and features available for math equations—you can find [helpful examples of the the most common basic commands here](http://www.malinc.se/math/latex/basiccodeen.php). In this class, these will be the most common things you'll use:
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Description </th>
+   <th style="text-align:left;"> Command </th>
+   <th style="text-align:left;"> Output </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr grouplength="4"><td colspan="3" style="border-bottom: 1px solid;"><strong>Letters</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Roman letters </td>
+   <td style="text-align:left;"> <code>a b c d e f</code> </td>
+   <td style="text-align:left;"> \(a\ b\ c\ d\ e\ f\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Greek letters (see <a href="https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols">this</a> for all possible letters) </td>
+   <td style="text-align:left;"> <code>\alpha \beta \Gamma \gamma</code> <br> <code>\Delta \delta \epsilon</code> </td>
+   <td style="text-align:left;"> \(\alpha\ \beta\ \Gamma\ \gamma\ \Delta\ \delta\ \epsilon\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Letters will automatically be italicized and treated as math variables;<br>if you want actual text in the math, use <code>\text{}</code> </td>
+   <td style="text-align:left;"> Ew: <code>Treatment = \beta</code> <br>Good: <code>\text{Treatment} = \beta</code> </td>
+   <td style="text-align:left;"> Ew: \(Treatment = \beta\)<br>Good: \(\text{Treatment} = \beta\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Extra spaces will automatically be removed; if you want a space, use <code>\ </code> </td>
+   <td style="text-align:left;"> No space: <code>x y</code> <br> Space: <code>x\ y</code> </td>
+   <td style="text-align:left;"> No space: \(x y\) <br>Space: \(x \ y\) </td>
+  </tr>
+  <tr grouplength="6"><td colspan="3" style="border-bottom: 1px solid;"><strong>Superscripts and subscripts</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Use <code>^</code> to make one character superscripted. </td>
+   <td style="text-align:left;"> <code>x^2</code> </td>
+   <td style="text-align:left;"> \(x^2\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Wrap the superscripted part in <code>{}</code> if there's more than one character </td>
+   <td style="text-align:left;"> <code>x^{2+y}</code> </td>
+   <td style="text-align:left;"> \(x^{2+y}\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Use <code>_</code> to make one character subscripted </td>
+   <td style="text-align:left;"> <code>\beta_1</code> </td>
+   <td style="text-align:left;"> \(\beta_1\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Wrap the subscripted part in <code>{}</code> if there's more than one character </td>
+   <td style="text-align:left;"> <code>\beta_{i, t}</code> </td>
+   <td style="text-align:left;"> \(\beta_{i, t}\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Use superscripts and subscripts simultaneously </td>
+   <td style="text-align:left;"> <code>\beta_1^{\text{Treatment}}</code> </td>
+   <td style="text-align:left;"> \(\beta_1^{\text{Treatment}}\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> You can even nest them </td>
+   <td style="text-align:left;"> <code>x^{2^{2^2}}</code> </td>
+   <td style="text-align:left;"> \(x^{2^{2^2}}\) </td>
+  </tr>
+  <tr grouplength="9"><td colspan="3" style="border-bottom: 1px solid;"><strong>Math operations</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Addition </td>
+   <td style="text-align:left;"> <code>2 + 5 = 7</code> </td>
+   <td style="text-align:left;"> \(2 + 5 = 7\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Subtraction </td>
+   <td style="text-align:left;"> <code>2 - 5 = -3</code> </td>
+   <td style="text-align:left;"> \(2 + 5 = -3\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Multiplication </td>
+   <td style="text-align:left;"> <code>x \times y</code> <br> <code>x \cdot y</code> </td>
+   <td style="text-align:left;"> \(x \times y\) <br> \(x \cdot y\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Division </td>
+   <td style="text-align:left;"> <code>8 \div 2</code> </td>
+   <td style="text-align:left;"> \(8 \div 2\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Fractions </td>
+   <td style="text-align:left;"> <code>\frac{8}{2}</code> </td>
+   <td style="text-align:left;"> \(\frac{8}{2}\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Square roots; use <code>[3]</code> for other roots </td>
+   <td style="text-align:left;"> <code>\sqrt{81} = 9</code> <br> <code>\sqrt[3]{27} = 3</code> </td>
+   <td style="text-align:left;"> \(\sqrt{81} = 9\) <br> \(\sqrt[3]{27} = 3\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Summation; use sub/superscripts for extra details </td>
+   <td style="text-align:left;"> <code>\sum x</code> <br> <code>\sum_{n=1}^{\infty} \frac{1}{n}</code> </td>
+   <td style="text-align:left;"> \(\sum x\) <br> \(\sum_{n=1}^{\infty} \frac{1}{n}\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Products; use sub/superscripts for extra details </td>
+   <td style="text-align:left;"> <code>\prod x</code> <br> <code>\prod_{n=1}^{5} n^2</code> </td>
+   <td style="text-align:left;"> \(\prod x\) <br> \(\prod_{n=1}^{5} n^2\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Integrals; use sub/superscripts for extra details </td>
+   <td style="text-align:left;"> <code>\int x^2 \ dx</code> <br> <code>\int_{1}^{100} x^2 \ dx</code> </td>
+   <td style="text-align:left;"> \(\int x^2 \ dx\) <br> \(\int_{1}^{100} x^2 \ dx\) </td>
+  </tr>
+  <tr grouplength="5"><td colspan="3" style="border-bottom: 1px solid;"><strong>Extra symbols</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Add a bar for things like averages </td>
+   <td style="text-align:left;"> <code>\bar{x}</code> </td>
+   <td style="text-align:left;"> \(\bar{x}\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Use an overline for longer things </td>
+   <td style="text-align:left;"> Ew: <code>\bar{abcdef}</code> <br> Good: <code>\overline{abcdef}</code> </td>
+   <td style="text-align:left;"> Ew: \(\bar{abcdef}\) <br> Good: \(\overline{abcdef}\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Add a hat for things like estimates </td>
+   <td style="text-align:left;"> <code>\hat{y}</code> </td>
+   <td style="text-align:left;"> \(\hat{y}\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Use a wide hat for longer things </td>
+   <td style="text-align:left;"> Ew: <code>\hat{abcdef}</code> <br> Good: <code>\widehat{abcdef}</code> </td>
+   <td style="text-align:left;"> Ew: \(\hat{abcdef}\) <br> Good: \(\widehat{abcdef}\) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Use arrows for DAG-like things </td>
+   <td style="text-align:left;"> <code>Z \rightarrow Y \leftarrow X</code> </td>
+   <td style="text-align:left;"> \(Z \rightarrow Y \leftarrow X\) </td>
+  </tr>
+  <tr grouplength="1"><td colspan="3" style="border-bottom: 1px solid;"><strong>Bonus fun</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Use colors!; see <a href="https://www.overleaf.com/learn/latex/Using_colours_in_LaTeX">here</a> for more details and <a href="https://www.overleaf.com/learn/latex/Using_colours_in_LaTeX#Reference_guide">here</a> for a list of color names </td>
+   <td style="text-align:left;"> <code>\color{red}{y} = \color{blue}{\beta_1 x_1}</code> </td>
+   <td style="text-align:left;"> \(\color{red}{y}\ \color{black}{=}\ \color{blue}{\beta_1 x_1}\) </td>
+  </tr>
+</tbody>
+</table>
+
+### Using math inline
 
 You can use math in two different ways: inline or in a display block. To use math inline, wrap it in single dollar signs, like ``\$y = mx + b\$``:
 
@@ -176,6 +324,8 @@ is <span class="math inline">\(\hat{y} = \beta_0 + \beta_1 x_1 + \epsilon\)</spa
 </tbody>
 </table>
 
+### Using math in a block
+
 To put an equation on its own line in a display block, wrap it in double dollar signs, like this:
 
 **Type…**
@@ -202,6 +352,8 @@ But now we just use computers to solve for $x$.
 
 ---
 
+### Dollar signs and math
+
 Because dollar signs are used to indicate math equations, you can't just use dollar signs like normal if you're writing about actual dollars. For instance, if you write `This book costs \$5.75 and this other costs \$40`, Markdown will treat everything that comes between the dollar signs as math, like so: "This book costs $5.75 and this other costs $40". 
 
 To get around that, put a backslash (`\`) in front of the dollar signs, so that `This book costs \\\$5.75 and this other costs \\\$40` becomes "This book costs <span>$5.75</span> and this other costs <span>$40</span>".
@@ -209,7 +361,7 @@ To get around that, put a backslash (`\`) in front of the dollar signs, so that 
 
 ## Tables
 
-There are 4 different ways to hand-create tables in Markdown—I say "hand-create" because it's normally way easier to use R to generate these things with packages like [**pander**](https://rapporter.github.io/pander/) (use `pandoc.table()`) or **knitr** (use [`kable()`](https://bookdown.org/yihui/rmarkdown-cookbook/kable.html)). The two most common are simple tables and pipe tables. [You should look at the full documentation here](https://pandoc.org/MANUAL.html#tables).
+There are 4 different ways to hand-create tables in Markdown—I say "hand-create" because it's normally way easier to use R to generate these things with packages like [**kableExtra**](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) (use `kable()`) or [**pander**](https://rapporter.github.io/pander/) (use `pandoc.table()`). The two most common are simple tables and pipe tables. [You should look at the full documentation here](https://pandoc.org/MANUAL.html#tables).
 
 **For simple tables, type…**
 
@@ -225,11 +377,11 @@ Table: Caption goes here
 
 **…to get…**
 
-  Right     Left     Center     Default
--------     ------ ----------   -------
-     12     12        12            12
-    123     123       123          123
-      1     1          1             1
+| Right | Left |  Center | Default |
+|------:|:-----|:-------:|---------|
+|   12  |  12  |    12   |    12   |
+|  123  |  123 |   123   |   123   |
+|    1  |    1 |     1   |     1   |
 
 Table: Caption goes here
 
