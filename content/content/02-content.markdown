@@ -120,6 +120,16 @@ You can also watch the playlist (and skip around to different sections) here:
 
 </div>
 
+## In-class stuff
+
+Here are all the materials we’ll use in class:
+
+-   [RStudio.cloud project](https://rstudio.cloud/spaces/160211/project/2789473)
+-   [Project `.zip` file](/projects/01-class.zip)
+-   [Lab slides 3: Data basics](/slides/01-class_03_data-basics.html) ([PDF](/slides/01-class_03_data-basics.pdf))
+-   [Lab slides 4: Visualize data with ggplot2](/slides/01-class_04_visualize-data.html) ([PDF](/slides/01-class_04_visualize-data.pdf))
+-   [Lab slides 5: Transform data with dplyr](/slides/01-class_05_transform-data.html) ([PDF](/slides/01-class_05_transform-data.pdf))
+
 [^1]: Nick Huntington-Klein, *The Effect: An Introduction to Research Design and Causality* (Boca Raton, Florida: Chapman and Hall / CRC, 2021), <https://theeffectbook.net/>.
 
 [^2]: Chester Ismay and Albert Y. Kim, *Statistical Inference via Data Science: A ModernDive into R and the Tidyverse* (Chapman and Hall / CRC, 2019), <https://moderndive.com/>.
