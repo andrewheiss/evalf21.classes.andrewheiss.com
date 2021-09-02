@@ -1,0 +1,79 @@
+---
+title: Bayesian statistics resources
+menu:
+  resource:
+    parent: Resources
+type: docs
+toc: true
+weight: 6
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.width = 6, fig.height = 3.6, fig.align = "center",
+                      fig.retina = 3, collapse = TRUE)
+set.seed(1234)
+options("digits" = 2, "width" = 150)
+```
+
+In class session 2 ([see this from the FAQ slides](https://evalf21.classes.andrewheiss.com/slides/02-class.html#12)) we talked briefly about the difference between frequentist statistics, where you test for the probability of your data given a null hypothesis, or $P(\text{data} \mid H_0)$, and Bayesian statistics, where you test for the probability of your hypothesis given your data, or $P(H \mid \text{data})$. 
+
+This difference is important. In the world of frequentism, which is what pretty much all statistics classes use (including this one!), you have to compare your findings to a hypothetical null world and you have to talk about rejecting null hypotheses. In the Bayes world, though, you get to talk about the probability that your hypothesis is correct rather than the probability of seeing a value in a null world. So much more convenient and easy to interpret!
+
+Bayesian statistics, though, requires a lot of computational power and a different way of thinking about statistics and numbers in general. And very few classes teach it. Including this one! I use Bayesian stats all the time in my own research (see [this](https://www.andrewheiss.com/research/articles/chaudhry-heiss-ngos-philanthropy/) or [this](https://www.andrewheiss.com/research/articles/chaudhry-dotson-heiss-2021/), for instance), but don't teach it (yet!) because nobody else really teaches it and frequentist statistics still rule the policy world, so you need to know them.
+
+## Resources
+
+But you can learn it on your own. Because very few stats classes actually teach Bayesian statistics, tons of people who use it are self-taught (like me!), in part because there are a ton of resources online for learning this stuff. Here are some of the best I've found:
+
+- [This new *Bayes Rules* book](https://www.bayesrulesbook.com/) is designed to be an introductory textbook for a stats class teaching Bayesian stuff. It’s really accessible and good (and free!). If I ever get to teach an intro stats class with Bayesian stats, I'll use this.
+- [This post from 2016](https://thinkinator.com/2016/01/12/r-users-will-now-inevitably-become-bayesians/) is a great short introduction and is what made me start using Bayesian methods. [The **brms** package](https://paul-buerkner.github.io/brms/) makes it incredibly easy to do Bayesian stuff, and the syntax is basically the same as `lm()`
+- [This post shows how to do one simple task](https://www.andrewheiss.com/blog/2019/01/29/diff-means-half-dozen-ways/) (a difference-in-means test) with regular old frequentist methods, bootstrapping, and with Bayesian stats both with brms and raw Stan code
+- [This short post](https://www.tjmahr.com/bayes-theorem-in-three-panels/) gives a helpful overview of the intuition behind Bayesianism
+- The super canonical everyone-has-this-book book is [*Statistical Rethinking* by Richard McElreath](https://xcelab.net/rm/statistical-rethinking/). At that page he also has an entire set of accompanying lectures on YouTube. He doesn’t use brms or ggplot, but someone has translated all his models to [tidyverse-based brms code here](https://bookdown.org/ajkurz/Statistical_Rethinking_recoded/)
+- [*The Theory That Would Not Die*](https://www.amazon.com/Theory-That-Would-Not-Die/dp/0300188226) is a fun little general introduction to the history of Bayesianism and why it kind of disappeared in the 20th century and was replaced by frequentism and p-values and null hypothesis testing
+
+## Super short example
+
+In practice, the R code for Bayesian models should be very familiar. For instance, here's a regular old frequentist OLS model:
+
+```{r freq-model, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(broom)
+
+model_ols <- lm(hwy ~ displ + drv, data = mpg)
+tidy(model_ols, conf.int = TRUE)
+```
+
+Here's that same model using the **brms** package, with default priors. Note how the code is basically the same:
+
+```{r bayes-model, message=FALSE, warning=FALSE, results='hide'}
+library(tidyverse)
+library(brms)         # For Bayesian regression with brm()
+library(broom.mixed)  # For tidy() and glance() with brms-based models
+library(tidybayes)    # For extracting posterior draws
+
+# This will take a few seconds to run
+model_bayes <- brm(hwy ~ displ + drv, data = mpg)
+```
+
+```{r show-bayes-results, warning=FALSE}
+tidy(model_bayes)
+```
+
+In Bayes land, you get a distribution of plausible values given the data (or what is called the "posterior distribution"), and you can visualize this posterior distribution:
+
+```{r plot-bayes-results}
+# Make a long dataset of the draws for these three coefficients
+posterior_draws <- model_bayes %>% 
+  gather_draws(c(b_displ, b_drv, b_drvf, b_drvr))
+
+# Plot this thing
+ggplot(posterior_draws, aes(x = .value, y = fct_rev(.variable), fill = .variable)) +
+  geom_vline(xintercept = 0) +
+  stat_halfeye(.width = c(0.8, 0.95), alpha = 0.8, point_interval = "median_hdi") +
+  guides(fill = "none") +
+  labs(x = "Coefficient", y = "Variable",
+       caption = "80% and 95% credible intervals shown in black")
+```
+
+Those are all the plausible values for these coefficients, given the data that we've fed the model, and the black bars at the bottom show the 80% and 95% credible intervals (or the range of values that 80/95% of the posterior covers). With this, there's a 95% chance that the coefficient for displacement is between −3.35 and −2.48. Neat!
