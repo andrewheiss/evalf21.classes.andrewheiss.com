@@ -124,11 +124,29 @@ You can also watch the playlist (and skip around to different sections) here:
 
 Here are all the materials we’ll use in class:
 
+-   [**Session 2 FAQ slides**](/slides/02-class.html) ([PDF](/slides/02-class.pdf))
+-   [Errors vs. warnings vs. messages](https://moderndive.com/1-getting-started.html#messages) (i.e. what to do when R shows you red text)
+-   R Markdown examples:
+    -   Example R Markdown file used as a code-through or step-by-step teaching document:
+        -   Lots of [blog posts here](https://www.andrewheiss.com/blog/)
+        -   Julia Silge, [“Modeling human/computer interactions on Star Trek from \#TidyTuesday with workflowsets”](https://juliasilge.com/blog/star-trek/)
+        -   Bob Rudis, [“Some Covid Donuts To End The Week”](https://rud.is/b/2021/08/13/some-covid-donuts-to-end-the-week/)
+        -   Holger K. von Jouanne-Diedrich, [“The “Youth Bulge” of Afghanistan: The Hidden Force behind Political Instability"](https://blog.ephorie.de/the-youth-bulge-of-afghanistan-the-hidden-force-behind-political-instability)
+    -   Example R Markdown file used as a publicly-consumable document:
+        -   Click on the “Manuscript” menu item [at this site](https://stats.andrewheiss.com/canary-ngos/)
+        -   See [the Rmd file here](https://github.com/andrewheiss/canary-ngos/blob/master/manuscript/manuscript.Rmd)
+
+Hands-on R materials:
+
 -   [RStudio.cloud project](https://rstudio.cloud/spaces/160211/project/2789473)
 -   [Project `.zip` file](/projects/01-class.zip)
 -   [Lab slides 3: Data basics](/slides/01-class_03_data-basics.html) ([PDF](/slides/01-class_03_data-basics.pdf))
 -   [Lab slides 4: Visualize data with ggplot2](/slides/01-class_04_visualize-data.html) ([PDF](/slides/01-class_04_visualize-data.pdf))
 -   [Lab slides 5: Transform data with dplyr](/slides/01-class_05_transform-data.html) ([PDF](/slides/01-class_05_transform-data.pdf))
+
+## Bayesian statistics resources
+
+In class I briefly mentioned the difference between frequentist and Bayesian statistics. You can see a bunch of [additional resources and examples of these two approaches to statistics here](/resource/bayes/).
 
 [^1]: Nick Huntington-Klein, *The Effect: An Introduction to Research Design and Causality* (Boca Raton, Florida: Chapman and Hall / CRC, 2021), <https://theeffectbook.net/>.
 
