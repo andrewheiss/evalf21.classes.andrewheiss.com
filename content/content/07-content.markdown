@@ -16,9 +16,9 @@ slides: "07-slides"
 
 ## Readings
 
--   <i class="fas fa-file-pdf"></i> Andrew Heiss, “Causal Inference,” Chapter 10 in *R for Political Data Science: A Practical Guide* (forthcoming) (Ignore the exercises!). [Get the PDF here.](/files/10-causal-inference.pdf)
+-   <i class="fas fa-file-pdf"></i> Andrew Heiss, “Causal Inference,” Chapter 10 in *R for Political Data Science: A Practical Guide* (2020) (Ignore the exercises!). [Get the PDF here.](/files/10-causal-inference.pdf)
 -   <i class="fas fa-book"></i> Chapter 4 in *Impact Evaluation in Practice*[^1]
--   <i class="fas fa-book"></i> Chapters 11 and 13 in *The Effect*[^2] (Skim chapter 11; it’s an overview of regression, which we reviewed in session 2, but it also applies the language of DAGs to regression, so look for that specifically as you read.)
+-   <i class="fas fa-book"></i> Chapters 11 and 13 in *The Effect*.[^2] **Focus especially on section 13.3 about standard errors.** And skim chapter 11; it’s an overview of regression, which we reviewed in session 2, but it also applies the language of DAGs to regression, so look for that specifically as you read.
 -   <i class="fas fa-podcast"></i> Planet Money, [“Moving To Opportunity?,”](https://www.npr.org/2019/08/30/756028025/episode-937-moving-to-opportunity) episode 937
 -   <i class="fas fa-external-link-square-alt"></i> Aaron Carroll, [“Workplace Wellness Programs Don’t Work Well. Why Some Studies Show Otherwise,”](https://www.nytimes.com/2018/08/06/upshot/employer-wellness-programs-randomized-trials.html) *The Upshot*, August 6, 2018
 

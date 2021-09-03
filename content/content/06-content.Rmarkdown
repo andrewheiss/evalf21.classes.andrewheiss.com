@@ -33,6 +33,7 @@ slide_details <- tibble::tribble(
 
 ## Readings
 
+- <i class="fas fa-file-pdf"></i> Guido Imbens, "Statistical Significance, *p*-Values, and the Reporting of Uncertainty" [@Imbens:2021]. This is available on iCollege, and [it's also free here](https://doi.org/10.1257/jep.35.3.157).
 - <i class="fas fa-external-link-square-alt"></i> Randall Munroe, ["Significant"](https://xkcd.com/882/)
 - <i class="fas fa-external-link-square-alt"></i> Alexander Coppock, ["10 Things to Know About Statistical Power"](https://egap.org/resource/10-things-to-know-about-statistical-power/)
 - <i class="fas fa-trophy"></i> Play around with FiveThirtyEight, ["Hack Your Way To Scientific Glory"](https://projects.fivethirtyeight.com/p-hacking/)

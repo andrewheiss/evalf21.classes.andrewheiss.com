@@ -16,11 +16,12 @@ slides: "06-slides"
 
 ## Readings
 
+-   <i class="fas fa-file-pdf"></i> Guido Imbens, “Statistical Significance, *p*-Values, and the Reporting of Uncertainty.”[^1] This is available on iCollege, and [it’s also free here](https://doi.org/10.1257/jep.35.3.157).
 -   <i class="fas fa-external-link-square-alt"></i> Randall Munroe, [“Significant”](https://xkcd.com/882/)
 -   <i class="fas fa-external-link-square-alt"></i> Alexander Coppock, [“10 Things to Know About Statistical Power”](https://egap.org/resource/10-things-to-know-about-statistical-power/)
 -   <i class="fas fa-trophy"></i> Play around with FiveThirtyEight, [“Hack Your Way To Scientific Glory”](https://projects.fivethirtyeight.com/p-hacking/)
--   <i class="fas fa-book"></i> Chapter 9 in *Impact Evaluation in Practice*[^1]
--   <i class="fas fa-book"></i> Chapter 11 in *The Effect*[^2]
+-   <i class="fas fa-book"></i> Chapter 9 in *Impact Evaluation in Practice*[^2]
+-   <i class="fas fa-book"></i> Chapter 11 in *The Effect*[^3]
 
 ## Slides
 
@@ -128,6 +129,8 @@ You can also watch the playlist (and skip around to different sections) here:
 
 </div>
 
-[^1]: Paul J. Gertler et al., *Impact Evaluation in Practice*, 2nd ed. (Inter-American Development Bank; World Bank, 2016), <https://openknowledge.worldbank.org/handle/10986/25030>.
+[^1]: Guido W. Imbens, “Statistical Significance, *p*-Values, and the Reporting of Uncertainty,” *Journal of Economic Perspectives* 35, no. 3, Summer (2021): 157–74, doi:[10.1257/jep.35.3.157](https://doi.org/10.1257/jep.35.3.157).
 
-[^2]: Nick Huntington-Klein, *The Effect: An Introduction to Research Design and Causality* (Boca Raton, Florida: Chapman and Hall / CRC, 2021), <https://theeffectbook.net/>.
+[^2]: Paul J. Gertler et al., *Impact Evaluation in Practice*, 2nd ed. (Inter-American Development Bank; World Bank, 2016), <https://openknowledge.worldbank.org/handle/10986/25030>.
+
+[^3]: Nick Huntington-Klein, *The Effect: An Introduction to Research Design and Causality* (Boca Raton, Florida: Chapman and Hall / CRC, 2021), <https://theeffectbook.net/>.
