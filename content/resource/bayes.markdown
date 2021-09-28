@@ -285,7 +285,7 @@ library(ggdist)       # For making pretty posterior plots
 
 
 ```r
-# bf() stands for "bayes formula); you technically don't need to use it, but it 
+# bf() stands for "bayes formula"; you technically don't need to use it, but it 
 # makes life easier for more complex models, so it's good practice even when 
 # using a simple formula like the one here
 #
