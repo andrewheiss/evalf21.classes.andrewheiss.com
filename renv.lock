@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.1.0",
+    "Version": "4.1.1",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -156,6 +156,13 @@
       "Repository": "CRAN",
       "Hash": "0459d4dd7a8c239be18469a30c23dd4b"
     },
+    "TMB": {
+      "Package": "TMB",
+      "Version": "1.7.22",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "d1a16b564d4d43d01943002981f45ab6"
+    },
     "V8": {
       "Package": "V8",
       "Version": "3.4.2",
@@ -285,9 +292,14 @@
     "broom.mixed": {
       "Package": "broom.mixed",
       "Version": "0.2.7",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "21e67b67356e9b0ee4b89a0315401152"
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "broom.mixed",
+      "RemoteUsername": "bbolker",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "3d120888ccc54bf71518b83512d741264e3c351c",
+      "Hash": "4aee4925e56b52b339c450be633e8ffd"
     },
     "bslib": {
       "Package": "bslib",
@@ -441,6 +453,13 @@
       "Repository": "CRAN",
       "Hash": "2b06f9e415a62b6762e4b8098d2aecbc"
     },
+    "cubelyr": {
+      "Package": "cubelyr",
+      "Version": "1.0.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "da6ba095ae2dc4ecab6e9156633c5901"
+    },
     "curl": {
       "Package": "curl",
       "Version": "4.3.2",
@@ -496,13 +515,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "36f1ae62f026c8ba9f9b5c9a08c03297"
-    },
-    "dreamerr": {
-      "Package": "dreamerr",
-      "Version": "1.2.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "5b31f43f60613477ee28abec9ab07f1b"
     },
     "dtplyr": {
       "Package": "dtplyr",
@@ -585,13 +597,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "5b7f10508af7c7ece94806cde11ae374"
-    },
-    "fixest": {
-      "Package": "fixest",
-      "Version": "0.9.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "6aa41ae32cc4a2070f12406c43a12727"
     },
     "flair": {
       "Package": "flair",
@@ -688,6 +693,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "4c64a588b497f8c088e1d308ddd40bc6"
+    },
+    "gghalves": {
+      "Package": "gghalves",
+      "Version": "0.1.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "ed1e309b64773a074a39e1241c44dd42"
     },
     "ggplot2": {
       "Package": "ggplot2",
@@ -1258,10 +1270,10 @@
     },
     "posterior": {
       "Package": "posterior",
-      "Version": "1.0.1",
+      "Version": "1.1.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "6fa90d23863d8e1d30b7e9b1427257c0"
+      "Hash": "c0a0ec06cbabb84f7012963cbd21a153"
     },
     "prettyunits": {
       "Package": "prettyunits",
@@ -1405,10 +1417,10 @@
     },
     "rmarkdown": {
       "Package": "rmarkdown",
-      "Version": "2.9",
+      "Version": "2.10",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "912c09266d5470516df4df7a303cde92"
+      "Hash": "1fb097f233ee98968f8e5d0bcd42df6d"
     },
     "rngtools": {
       "Package": "rngtools",
