@@ -18,7 +18,7 @@ In class session 2 ([see this from the FAQ slides](/slides/02-class.html#12)) we
 
 This difference is important. In the world of frequentism, which is what pretty much all statistics classes use (including this one!), you have to compare your findings to a hypothetical null world and you have to talk about rejecting null hypotheses. In the Bayes world, though, you get to talk about the probability that your hypothesis is correct rather than the probability of seeing a value in a null world. So much more convenient and easy to interpret!
 
-Bayesian statistics, though, requires a lot of computational power and a different way of thinking about statistics and numbers in general. And very few classes teach it. Including this one! I use Bayesian stats all the time in my own research (see [this](https://www.andrewheiss.com/research/articles/chaudhry-heiss-ngos-philanthropy/) or [this](https://www.andrewheiss.com/research/articles/chaudhry-dotson-heiss-2021/), for instance), but don't teach it (yet!) because nobody else really teaches it and frequentist statistics still rule the policy world, so you need to know them.
+Bayesian statistics, though, requires a lot of computational power and a different way of thinking about statistics and numbers in general. And very few classes teach it. Including this one! I use Bayesian stats all the time in my own research (see [this](https://www.andrewheiss.com/research/articles/chaudhry-heiss-ngos-philanthropy/) or [this](https://www.andrewheiss.com/research/articles/chaudhry-dotson-heiss-2021/), for instance), but don't teach it (yet!) because nobody else really teaches it and frequentist statistics still rule the policy world, so you need to know it.
 
 ## Resources
 
@@ -222,7 +222,7 @@ ggplot(freq_results, aes(x = estimate, y = model, color = model)) +
 
 Remember, with frequentist statistics, `\(\theta\)` is fixed and singular and we're hoping to pick it up with our confidence interval nets. The data we collect is variable—we can hypothetically take more and more samples and calculate a bunch of confidence intervals and become more certain about where `\(\theta\)` might be. We can only interpret confidence intervals as ranges: "There's a 95% probability that the range contains the true value `\(\theta\)`". We can't say anything about the estimate of `\(\theta\)` itself. We've calculated the probability of the range, not the probability of the actual value.
 
-Bayesian analysis, however, *does* let us talk about the probability of the actual value. Under Bayesianism, the *data* your working with is fixed (i.e. you collected it once and it's all you have—you can't go out and collect infinite additional samples), and the population parameter `\(\theta\)` varies and has uncertainty about it (i.e. instead of imagining some single number uncapturable that's the average difference in weekend vs. weekday scores, `\(\theta\)` has some range around it).
+Bayesian analysis, however, *does* let us talk about the probability of the actual value. Under Bayesianism, the *data* you're working with is fixed (i.e. you collected it once and it's all you have—you can't go out and collect infinite additional samples), and the population parameter `\(\theta\)` varies and has uncertainty about it (i.e. instead of imagining some single number uncapturable that's the average difference in weekend vs. weekday scores, `\(\theta\)` has some range around it).
 
 This difference is apparent in the formulas for testing hypotheses under each of these approaches:
 
@@ -406,6 +406,11 @@ So, we've seen two different philosophies for quantifying uncertainty with confi
    <td style="text-align:left;"> How to do it in R </td>
    <td style="text-align:left;"> <code>lm(...)</code> </td>
    <td style="text-align:left;"> <code>library(brms)</code><br><code>brm(...)</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Name </td>
+   <td style="text-align:left;"> Confidence interval </td>
+   <td style="text-align:left;"> Credible interval (or posterior interval) </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Intuition </td>
