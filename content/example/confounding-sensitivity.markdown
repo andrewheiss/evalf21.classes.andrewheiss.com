@@ -97,7 +97,7 @@ adjustmentSets(mosquito_dag)
 ## { health, income, temperature, unobserved }
 ```
 
-Easy! To isolate the causal effect, we just have to adjust for health, income, nighttime temperatures and… \<record scratch> unobserved and unmeasurable things. oh no. You can’t adjust for things that you can’t measure (or can’t even see).
+Easy! To isolate the causal effect, we just have to adjust for health, income, nighttime temperatures and… &lt;record scratch&gt; unobserved and unmeasurable things. oh no. You can’t adjust for things that you can’t measure (or can’t even see).
 
 With experiments, you get to eliminate all confounding by definition—that’s why experiments are great. With observational data, you’ll always have unobserved confounding lurking in the shadows.
 
@@ -149,7 +149,7 @@ The `.dta` file contains 25 columns, but these are the ones we’ll care about f
 -   Catholic school (`catholic`): A binary variable indicating if the student attended a catholic high school (`1`) or a public high school (`0`).
 -   Family income (`faminc8`, converted to `inc8`): Total family income in 8th grade. This is a categorical variable, but the authors of this study convert levels to actual numbers that fall in the income range. These numbers are in thousands of dollars (so 2 means \$2,000):
     -   None: 0
-    -   \< \\\$1,000: 0.5
+    -   &lt; \\\$1,000: 0.5
     -   \\\$1,000-\\\$2,999: 2
     -   \\\$3,000-\\\$4,999: 4
     -   \\\$5,000-\\\$7,499: 6.25
@@ -587,7 +587,7 @@ glance(model_some_controls)
 ## 1     0.816         0.815  6.64     2580.       0     3 -5801. 11612. 11639.   77080.        1748  1752
 ```
 
-By controlling for income and health, we now explain 81.5% of the variation in malaria risk. That’s a pretty big jump in `\(R^2\)`. Where’d it come from? Which of those new variables explained that additional variation.
+By controlling for income and health, we now explain 81.5% of the variation in malaria risk. That’s a pretty big jump in `\(R^2\)`. Where’d it come from? Which of those new variables explained that additional variation?
 
 One way to figure this out is to calculate something called the **partial** `\(R^2\)`. To do this, we essentially fit a bunch of variations of the model and leave out individual variables one at a time and note the `\(R^2\)` each time. That’s tedious to do manually, but the `rsq.partial()` function from [the **rsq** library](https://cran.r-project.org/web/packages/rsq/) can do it for us:
 
@@ -1184,7 +1184,7 @@ ovb_minimal_reporting(net_sensitivity, format = "pure_html")
 <th style="text-align:left;border-bottom: 1px solid transparent;border-top: 1px solid black">
 </th>
 <th colspan="6" style="text-align:center;border-bottom: 1px solid black;border-top: 1px solid black">
-Outcome: malaria_risk
+Outcome: malaria\_risk
 </th>
 </tr>
 <tr>
@@ -1214,7 +1214,7 @@ RV<sub>q = 1, α = 0.05</sub>
 <tbody>
 <tr>
 <td style="text-align:left; border-bottom: 1px solid black">
-<i>net_num</i>
+<i>net\_num</i>
 </td>
 <td style="text-align:right;border-bottom: 1px solid black">
 -10.442

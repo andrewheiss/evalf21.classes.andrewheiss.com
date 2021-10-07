@@ -476,7 +476,7 @@ model_some_controls <- lm(malaria_risk ~ net + income + health,
 glance(model_some_controls)
 ```
 
-By controlling for income and health, we now explain 81.5% of the variation in malaria risk. That's a pretty big jump in $R^2$. Where'd it come from? Which of those new variables explained that additional variation.
+By controlling for income and health, we now explain 81.5% of the variation in malaria risk. That's a pretty big jump in $R^2$. Where'd it come from? Which of those new variables explained that additional variation?
 
 One way to figure this out is to calculate something called the **partial** $R^2$. To do this, we essentially fit a bunch of variations of the model and leave out individual variables one at a time and note the $R^2$ each time. That's tedious to do manually, but the `rsq.partial()` function from [the **rsq** library](https://cran.r-project.org/web/packages/rsq/) can do it for us:
 
