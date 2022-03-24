@@ -109,3 +109,10 @@ You can also watch the playlist (and skip around to different sections) here:
 </iframe>
 
 </div>
+
+## In-class stuff
+
+Here are all the materials we’ll use in class:
+
+-   [**Week 12 FAQ slides**](/slides/12-class.html) ([PDF](/slides/12-class.pdf))
+-   [Week 12 R code](/projects/week-12.zip) (on [RStudio.cloud](https://rstudio.cloud/spaces/160211/project/3189708))

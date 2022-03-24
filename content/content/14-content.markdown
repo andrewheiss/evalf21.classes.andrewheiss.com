@@ -32,7 +32,7 @@ This looks like a lot, but most of these are quite short!
 
 ### Ethics
 
-Keep in mind throughout all these readings that an “algorithm” in these contexts is typically some fancy type of regression model where the outcome variable is something binary like “Safe babysitter/unsafe babysitter,” “Gave up seat in past/didn’t give up seat in past,” or “Violated probation in past/didn’t violate probation in past,” and the explanatory variables are hundreds of pieces of data that might predict those outcomes (social media history, flight history, race, etc.).
+Keep in mind throughout all these readings that an “algorithm” in these contexts is typically some fancy type of regression model where the outcome variable is something binary like “Safe babysitter/unsafe babysitter,” “Gave up seat in past/didn’t give up seat in past”, or “Violated probation in past/didn’t violate probation in past”, and the explanatory variables are hundreds of pieces of data that might predict those outcomes (social media history, flight history, race, etc.).
 
 Data scientists build a (sometimes proprietary and complex) model based on existing data, plug in values for any given new person, multiply that person’s values by the coefficients in the model, and get a final score in the end for how likely someone is to be a safe babysitter or how likely someone is to return to jail.
 
@@ -229,6 +229,12 @@ You can also watch the playlist (and skip around to different sections) here:
 
 </div>
 
-[^1]: Miguel A. Hernán, “The c-Word: Scientific Euphemisms Do Not Improve Causal Inference from Observational Data,” *American Journal of Publich Health* 108, no. 5 (May 2018): 616–19, doi:[10.2105/AJPH.2018.304337](https://doi.org/10.2105/AJPH.2018.304337).
+## In-class stuff
+
+Here are all the materials we’ll use in class:
+
+-   [**Week 14 FAQ slides**](/slides/14-class.html) ([PDF](/slides/14-class.pdf))
+
+[^1]: Miguel A. Hernán, “The c-Word: Scientific Euphemisms Do Not Improve Causal Inference from Observational Data,” *American Journal of Public Health* 108, no. 5 (May 2018): 616–19, doi:[10.2105/AJPH.2018.304337](https://doi.org/10.2105/AJPH.2018.304337).
 
 [^2]: Paul J. Gertler et al., *Impact Evaluation in Practice*, 2nd ed. (Inter-American Development Bank; World Bank, 2016), <https://openknowledge.worldbank.org/handle/10986/25030>.

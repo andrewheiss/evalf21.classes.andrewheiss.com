@@ -129,9 +129,9 @@ You can also watch the playlist (and skip around to different sections) here:
 
 Here are all the materials we’ll use in class:
 
--   [**Session 8 FAQ slides**](/slides/08-class.html) ([PDF](/slides/08-class.pdf))
+-   [**Session 8-9 FAQ slides**](/slides/08-class.html) ([PDF](/slides/08-class.pdf))
 -   [Unobserved confounding and sensitivity analysis](/example/confounding-sensitivity/)
--   [Session 8 R code](/projects/week-8.zip) (on [RStudio.cloud](https://rstudio.cloud/spaces/160211/project/3023994))
+-   [Session 8-9 R code](/projects/week-8.zip) (on [RStudio.cloud](https://rstudio.cloud/spaces/160211/project/3023994))
 
 [^1]: Paul J. Gertler et al., *Impact Evaluation in Practice*, 2nd ed. (Inter-American Development Bank; World Bank, 2016), <https://openknowledge.worldbank.org/handle/10986/25030>.
 

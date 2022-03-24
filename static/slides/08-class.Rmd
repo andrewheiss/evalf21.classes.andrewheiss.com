@@ -1,5 +1,5 @@
 ---
-title: "Class 7: RCTs, adjustment, and sensitivity"
+title: "Classes 8-9: Diff-in-diff"
 author: "Andrew Heiss"
 date: "`r Sys.Date()`"
 output:
@@ -321,6 +321,63 @@ class: middle
 
 ---
 
+.box-5.large[Multiple adjustment sets]
+
+???
+
+DAG from exam 1 and why there are multiple adjustment sets
+
+---
+
+.box-5.large[Where do we get all this data?]
+
+.box-inv-5[lolz]
+
+.box-inv-5[[Data resources](https://evalf21.classes.andrewheiss.com/resource/data/)]
+
+.box-inv-5[[See this](https://skranz.github.io//r/2021/01/05/FindingEconomicArticles4.html)]
+
+---
+
+.center[
+<figure>
+  <img src="img/08-class/file-not-found.png" alt="The Verge 'File Not Found'" title="The Verge 'File Not Found'" width="100%">
+</figure>
+]
+
+???
+
+https://www.theverge.com/22684730/students-file-folder-directory-structure-education-gen-z
+
+- Absolute vs. relative paths
+- Best practices for project structures
+- File types - jpg/png/pdf, CSV vs. Excel, Word vs. txt vs. md vs. Rmd
+- Downloading files from the internet and using them in Rmd - dagitty specifically
+
+---
+
+.box-5.large[Project structures]
+
+.box-inv-5[[One approach](https://kdestasio.github.io/post/r_best_practices/)]
+
+.box-inv-5[[Another approach](https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html#Organizing_your_working_directory)]
+
+.box-inv-5[[Yet another approach](https://github.com/andrewheiss/who-cares-about-crackdown)]
+
+.box-inv-5[[Another another approach](http://projecttemplate.net/)]
+
+---
+
+.box-5.large[File types]
+
+.box-inv-5[[Image types slides](https://datavizs21.classes.andrewheiss.com/slides/02-slides.html#57)]
+
+.box-inv-5[CSV vs. Excel]
+
+.box-inv-5[`.docx` vs. `.txt` vs. `.md` vs `.Rmd`]
+
+---
+
 .center[
 <figure>
   <img src="img/08-class/bedtime-math.png" alt="Bedtime math" title="Bedtime math" width="45%">
@@ -347,6 +404,81 @@ class: middle
 
 ---
 
+.box-5.medium[Why are we learning<br>two ways to do diff-in-diff?<br>(2x2 matrix vs. `lm()`)]
+
+---
+
+.box-5.less-medium[What group level is best for comparison? For example, if we are looking at policy change in NJ, is it best to compare with just one or two similar states? How similar do the populations need to be?]
+
+.box-5.medium.sp-after[Wouldn't matching be better?]
+
+.box-5.less-medium[Do we have to think about balance when dealing with observational data in diff in diff?]
+
+.box-inv-5[[Two-way fixed effects (TWFE)](https://www.andrewheiss.com/blog/2021/08/25/twfe-diagnostics/)]
+
+???
+
+- Multiple states/groups are possible - that's TWFE
+- Wouldn't matching be better? Sure, if you're doing state-level stuff. But their data was restaurant level
+
+- Balance: Maybe. With just two states/villages/countries/whatever, yes. With lots, the state/year fixed effects pick up those trends for you
+
+---
+
+.box-5.large[Minimum legal drinking age]
+
+---
+
+$$\begin{aligned}
+\text{Mortality}\ =&\ \beta_0 + \beta_1\ \text{Alabama} + \beta_2\ \text{After 1975}\ + \\
+&\ \beta_3\ (\text{Alabama} \times \text{After 1975})
+\end{aligned}$$
+
+---
+
+$$\text{Mortality}\ =\ \beta_0 + \beta_1\ \text{Treatment} + \beta_2\ \text{State} + \beta_3\ \text{Year}$$
+
+---
+
+$$\begin{aligned}
+\text{Mortality}\ =&\ \beta_0 + \beta_1\ \text{Treatment} + \beta_2\ \text{State}\ + \\
+&\ \beta_3\ \text{Year} + \beta_4\ (\text{State} \times \text{Year})
+\end{aligned}$$
+
+---
+
+.center[
+<figure>
+  <img src="img/08-class/mm-tbl-5-2.png" alt="Mastering Metrics Table 5.2" title="Mastering Metrics Table 5.2" width="55%">
+</figure>
+]
+
+---
+
+.center[
+<figure>
+  <img src="img/08-class/mm-fig-5-4.png" alt="Mastering Metrics Figure 5.4" title="Mastering Metrics Figure 5.4" width="65%">
+</figure>
+]
+
+---
+
+.center[
+<figure>
+  <img src="img/08-class/mm-fig-5-5.png" alt="Mastering Metrics Figure 5.5" title="Mastering Metrics Figure 5.5" width="65%">
+</figure>
+]
+
+---
+
+.center[
+<figure>
+  <img src="img/08-class/mm-fig-5-6.png" alt="Mastering Metrics Figure 5.6" title="Mastering Metrics Figure 5.6" width="65%">
+</figure>
+]
+
+---
+
 .box-5.large[What happened to confounding??]
 
 .box-5.large[Now we're only looking<br>at just two "confounders"?]
@@ -357,16 +489,7 @@ The parallel trends assumption takes care of that
 
 ---
 
-.box-5.less-medium[What group level is best for comparison? For example, if we are looking at policy change in NJ, is it best to compare with just one or two similar states? How similar do the populations need to be?]
-
-.box-5.medium.sp-after[Wouldn't matching be better?]
-
-.box-inv-5[[Two-way fixed effects (TWFE)](https://www.andrewheiss.com/blog/2021/08/25/twfe-diagnostics/)]
-
-???
-
-- Multiple states/groups are possible - that's TWFE
-- Wouldn't matching be better? Sure, if you're doing state-level stuff. But their data was restaurant level
+.box-5.medium[Is it reasonable to conduct<br>sensitivity analysis when working<br>with diff in diff?]
 
 ---
 
@@ -379,5 +502,7 @@ The parallel trends assumption takes care of that
 .box-inv-5[[See this](https://www.andrewheiss.com/blog/2021/08/25/twfe-diagnostics/)]
 
 ???
+
+This is good for ethical reasons!
 
 Blog post

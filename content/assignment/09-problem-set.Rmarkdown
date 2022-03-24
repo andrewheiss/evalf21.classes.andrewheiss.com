@@ -1,8 +1,8 @@
 ---
 title: "Problem set 9"
 linktitle: "Problem set 9"
-date: "2021-11-29"
-due_date: "2021-11-29"
+date: "2021-12-06"
+due_date: "2021-12-06"
 due_time: "11:59 PM"
 menu:
   assignment:
@@ -17,7 +17,7 @@ This assignment will give you practice generating synthetic data and building in
 
 These two examples will be incredibly helpful:
 
-- [Generating random numbers](/example/random-numbers/>)
+- [Generating random numbers](/example/random-numbers/)
 - [The ultimate guide to generating synthetic data for causal inference](/example/synthetic-data/)
 
 
